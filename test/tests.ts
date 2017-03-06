@@ -100,5 +100,54 @@ describe('Executing test suite', () => {
 			assert(code === 0);
 			done();
 		});
-	})
+	});
+
+	it('Test of the call async function with Buffer', (done) => {
+		let cmd: Buffer = null;
+		if (isWin) {
+			cmd = new Buffer('dir');
+		} else if (isDarwin || isLinux) {
+			cmd = new Buffer('ls -axpl');
+		}
+
+		call(cmd, (err: Error, code: number) => {
+			if (err) {
+				assert(false, err.message);
+			}
+
+			assert(code === 0);
+			done();
+		});
+	});
+
+	it('Test of the call async function with Array of command parts', (done) => {
+		let cmd: string[] = [];
+		if (isWin) {
+			cmd = ['dir', '\L'];
+		} else if (isDarwin || isLinux) {
+			cmd = ['ls', '-axpl'];
+		}
+
+		call(cmd, (err: Error, code: number) => {
+			if (err) {
+				assert(false, err.message);
+			}
+
+			assert(code === 0);
+			done();
+		});
+	});
+
+	it('Test of the call async function with null command', (done) => {
+		call(null, (err: Error, code: number) => {
+			if (err) {
+				assert(code === 127);
+				assert.equal(err.message, 'No command given to execute in call');
+				done();
+			}
+
+			assert(false, `${code}`);
+			done();
+		});
+	});
 });

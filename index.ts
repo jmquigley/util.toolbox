@@ -57,9 +57,19 @@ export function sanitize(buffer: string | Buffer, verbose: boolean = false, log 
  * @param log {console.log} the logger object to use with the output from
  * the command.
  */
-export function call(cmd: string, cb: Function = nil, verbose = true, log = console.log) {
+export function call(cmd: string | Buffer | string[], cb: Function = nil, verbose = true, log = console.log) {
+	if (cmd == null) {
+		return cb(new Error('No command given to execute in call'), 127);
+	}
+
+	if (cmd instanceof Buffer) {
+		cmd = cmd.toString();
+	} else if (cmd instanceof Array) {
+		cmd = cmd.join(' ');
+	}
+
 	if (verbose) {
-		log(cmd);
+		log(`$ ${cmd}`);
 	}
 	let out = ps.exec(cmd);
 
