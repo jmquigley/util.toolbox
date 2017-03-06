@@ -7,7 +7,8 @@
 <dt><a href="#sanitize">sanitize(buffer, verbose, log)</a></dt>
 <dd><p>Takes a data buffer of output bytes, converts it to a string and then splits
 it on newlines for output.  By default it is just saved into a sanitized
-array.  If verbose is set to true, then the buffer it output to the console.</p>
+array.  If verbose is set to true, then the buffer it output to the console
+line by line.</p>
 </dd>
 <dt><a href="#call">call(cmd, cb, verbose, log)</a></dt>
 <dd><p>Performs an asynchronous command line call to run a given user command.</p>
@@ -25,7 +26,8 @@ A function that does nothing.  Use it as an empty callback initializer.
 ## sanitize(buffer, verbose, log)
 Takes a data buffer of output bytes, converts it to a string and then splits
 it on newlines for output.  By default it is just saved into a sanitized
-array.  If verbose is set to true, then the buffer it output to the console.
+array.  If verbose is set to true, then the buffer it output to the console
+line by line.
 
 **Kind**: global function  
 **Retuns**: <code>string[]</code> an array of string that represent the lines given with

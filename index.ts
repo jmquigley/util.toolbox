@@ -20,7 +20,8 @@ export let nil: Function = () => {
 /**
  * Takes a data buffer of output bytes, converts it to a string and then splits
  * it on newlines for output.  By default it is just saved into a sanitized
- * array.  If verbose is set to true, then the buffer it output to the console.
+ * array.  If verbose is set to true, then the buffer it output to the console
+ * line by line.
  * @param buffer {string} the output bytes to convert and print to log.
  * @param verbose {boolean} if true, then the sanitized output is sent to
  * the console.
