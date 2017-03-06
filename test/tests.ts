@@ -4,7 +4,7 @@ import * as assert from 'assert';
 import {Fixture} from 'util.fixture';
 import {debug} from './helpers';
 import * as fs from 'fs-extra';
-import * as toolbox from '../index';
+import {call, nil, sanitize, isWin, isDarwin, isLinux} from '../index';
 
 describe('Executing test suite', () => {
 
@@ -17,12 +17,12 @@ describe('Executing test suite', () => {
 	});
 
 	it('Testing nil', () => {
-		toolbox.nil();
+		nil();
 	});
 
 	it('Executing output function test on string', () => {
 		let data: string = 'test1\r\ntest2\r\ntest3\n';
-		let out = toolbox.sanitize(data, true);
+		let out = sanitize(data, true);
 
 		assert(out instanceof Array);
 		assert(out.length === 3);
@@ -33,7 +33,7 @@ describe('Executing test suite', () => {
 
 	it('Executing output function test on buffer', () => {
 		let data: Buffer = new Buffer('test1\r\ntest2\r\ntest3\n');
-		let out = toolbox.sanitize(data);
+		let out = sanitize(data);
 
 		assert(out instanceof Array);
 		assert(out.length === 3);
@@ -44,7 +44,7 @@ describe('Executing test suite', () => {
 
 	it('Executing output function test on string with multiple newlines', () => {
 		let data: string = 'test1\r\n\ntest2\n\n\n\r\ntest3\n\n\n';
-		let out = toolbox.sanitize(data);
+		let out = sanitize(data);
 
 		assert(out instanceof Array);
 		assert(out.length === 9);
@@ -52,4 +52,53 @@ describe('Executing test suite', () => {
 		assert.equal(out[2], 'test2');
 		assert.equal(out[6], 'test3');
 	});
+
+	it('Test of the call async function', (done) => {
+		let cmd = '';
+		if (isWin) {
+			cmd = 'set';
+		} else if (isDarwin || isLinux) {
+			cmd = 'env';
+		}
+
+		call(cmd, (err: Error, code: number) => {
+			if (err) {
+				assert(false, err.message);
+			}
+
+			assert(code === 0);
+			done();
+		});
+	});
+
+	it('Test of the call async function with bad command', (done) => {
+		call('lksjdlgjslgdjlgksjdlgkj', (err: Error, code: number) => {
+			if (err) {
+				assert(true, `${err.message} (${code})`);
+				assert(code === 127);
+				done();
+			}
+
+			assert(false, 'This should not pass');
+			done();
+		});
+	});
+
+	it('Test of the call async function with long output', (done) => {		
+		let cmd = '';
+		if (isWin) {
+			cmd = 'dir';
+		} else if (isDarwin || isLinux) {
+			cmd = 'ls -axpl';
+		}
+
+		call(cmd, (err: Error, code: number) => {
+			if (err) {
+				assert(false, err.message);
+			}
+
+			assert(code === 0);
+			done();
+		});
+	})
 });

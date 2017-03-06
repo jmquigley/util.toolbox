@@ -1,9 +1,15 @@
+import * as ps from 'child_process';
 import {rstrip} from 'util.rstrip';
 
 export const encoding: string = 'utf-8';
 export const success: string = 'success';
 export const failure: string = 'failure';
 export const nl: string = '\n';
+
+export const isWin = /^win/.test(process.platform);
+export const isDarwin = /^darwin/.test(process.platform);
+export const isMac = /^darwin/.test(process.platform);
+export const isLinux = /^linux/.test(process.platform);
 
 /**
  * A function that does nothing.  Use it as an empty callback initializer.
@@ -38,4 +44,39 @@ export function sanitize(buffer: string | Buffer, verbose: boolean = false, log 
 	}
 
 	return lines;
+}
+
+/**
+ * Performs an asynchronous command line call to run a given user command.
+ *
+ * @param cmd {string} the command to execute on the command line
+ * @param cb {Function} the callback function to execute when the command
+ * finishes.
+ * @param verbose {boolean} a flag that determines if output will be written
+ * to the given logger.  True by default.
+ * @param log {console.log} the logger object to use with the output from
+ * the command.
+ */
+export function call(cmd: string, cb: Function = nil, verbose = true, log = console.log) {
+	if (verbose) {
+		log(cmd);
+	}
+	let out = ps.exec(cmd);
+
+	out.stdout.on('data', (data: string | Buffer) => {
+		sanitize(data, verbose);
+		return out;
+	});
+
+	out.stderr.on('data', (data: string | Buffer) => {
+		sanitize(data, verbose, console.error);
+	});
+
+	out.on('close', (code: number) => {
+		if (code !== 0) {
+			return cb(new Error(`Error executing command: ${cmd} (${code})`), code);
+		}
+
+		return cb(null, code);
+	});
 }
