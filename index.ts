@@ -35,7 +35,6 @@ export function sanitize(buffer: string | Buffer, verbose: boolean = false, log 
 		lines.forEach((line: string) => {
 			log(line);
 		});
-		log(nl);
 	}
 
 	return lines;
