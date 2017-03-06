@@ -24,5 +24,5 @@ $ npm run all
 
 The toolbox contains the following functions:
 
-- [nil](docs/index#nil)
-- [sanitize](docs/index#sanitize)
+- [nil](docs/index.md#nil)
+- [sanitize](docs/index.md#sanitize)
