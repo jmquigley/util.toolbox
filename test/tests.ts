@@ -53,6 +53,13 @@ describe('Executing test suite', () => {
 		assert.equal(out[6], 'test3');
 	});
 
+	it('Test sanitize with bad input', () => {
+		let out = sanitize(null);
+
+		assert(out instanceof Array);
+		assert(out.length === 0);
+	});
+
 	it('Test of the call async function', (done) => {
 		let cmd = '';
 		if (isWin) {
@@ -84,7 +91,7 @@ describe('Executing test suite', () => {
 		});
 	});
 
-	it('Test of the call async function with long output', (done) => {		
+	it('Test of the call async function with long output', (done) => {
 		let cmd = '';
 		if (isWin) {
 			cmd = 'dir';

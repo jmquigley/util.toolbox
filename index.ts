@@ -30,6 +30,10 @@ export let nil: Function = () => {
  * the input buffer.
  */
 export function sanitize(buffer: string | Buffer, verbose: boolean = false, log = console.log) {
+	if (buffer == null && typeof buffer !== 'string' && !(buffer instanceof Buffer)) {
+		return [];
+	}
+
 	if (buffer instanceof Buffer) {
 		buffer = buffer.toString();
 	}
