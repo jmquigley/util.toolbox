@@ -16,7 +16,6 @@ export interface ICallOpts {
 	log?: any;
 	shell?: string;
 	shellArgs?: string[];
-	timeout?: number;
 	verbose?: boolean;
 }
 
@@ -106,8 +105,7 @@ export function call(cmd: string | Buffer | string[], opts: ICallOpts = null, cb
 		log: console.log,
 		verbose: true,
 		shell: (isWin) ? 'powershell' : '/bin/bash',
-		shellArgs: (isWin) ? ['', cmd] : ['-l', '-c', cmd],
-		timeout: 0
+		shellArgs: (isWin) ? ['', cmd] : ['-l', '-c', cmd]
 	}, opts);
 
 	if (opts.verbose) {
