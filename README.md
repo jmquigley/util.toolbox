@@ -24,6 +24,7 @@ $ npm run all
 The toolbox contains the following functions:
 
 - [call](docs/index.md#call)
+- [callSync](docs/index.md#callSync)
 - [nil](docs/index.md#nil)
 - [sanitize](docs/index.md#sanitize)
 

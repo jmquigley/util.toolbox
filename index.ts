@@ -12,9 +12,11 @@ export const isMac = /^darwin/.test(process.platform);
 export const isLinux = /^linux/.test(process.platform);
 
 export interface ICallOpts {
+	async?: boolean;
 	log?: any;
 	shell?: string;
 	shellArgs?: string[];
+	timeout?: number;
 	verbose?: boolean;
 }
 
@@ -70,6 +72,8 @@ export function sanitize(buffer: string | Buffer, verbose: boolean = false, log 
  * @param cmd {string} the command to execute on the command line
  * @param [opts] {ICallOpts} optional arguments to the call
  *
+ *     - `async: boolean`: if true, then the async version is called, otherwise
+ *     the call will be synchronous.
  *     - `log: any`: the output logger that will be used with this call.  It
  *     uses a default of the console.log method.
  *     - `verbose: {boolean}`: if true, then output is printed
@@ -98,32 +102,67 @@ export function call(cmd: string | Buffer | string[], opts: ICallOpts = null, cb
 	}
 
 	opts = Object.assign({
+		async: true,
 		log: console.log,
 		verbose: true,
 		shell: (isWin) ? 'powershell' : '/bin/bash',
-		shellArgs: (isWin) ? ['', cmd] : ['-l', '-c', cmd]
+		shellArgs: (isWin) ? ['', cmd] : ['-l', '-c', cmd],
+		timeout: 0
 	}, opts);
 
 	if (opts.verbose) {
 		opts.log(`$ ${opts.shell} ${opts.shellArgs.join(' ')}`);
 	}
 
-	let out = ps.execFile(opts.shell, opts.shellArgs);
+	if (opts.async) {
+		let out = ps.execFile(opts.shell, opts.shellArgs);
 
-	out.stdout.on('data', (data: string | Buffer) => {
-		sanitize(data, opts.verbose);
-		return out;
-	});
+		out.stdout.on('data', (data: string | Buffer) => {
+			sanitize(data, opts.verbose);
+			return out;
+		});
 
-	out.stderr.on('data', (data: string | Buffer) => {
-		sanitize(data, opts.verbose, console.error);
-	});
+		out.stderr.on('data', (data: string | Buffer) => {
+			sanitize(data, opts.verbose, console.error);
+		});
 
-	out.on('close', (code: number) => {
-		if (code !== 0) {
-			return cb(new Error(`Error executing command: ${cmd} (${code})`), code);
+		out.on('close', (code: number) => {
+			if (code !== 0) {
+				return cb(new Error(`Error executing command: ${cmd} (${code})`), code);
+			}
+
+			return cb(null, code);
+		});
+	} else {
+		try {
+			let data = ps.execFileSync(opts.shell, opts.shellArgs);
+			sanitize(data, opts.verbose);
+			return cb(null, 0);
+		} catch (err) {
+			return cb(err, 127);
 		}
+	}
+}
 
-		return cb(null, code);
-	});
+/**
+ * Performs an synchronous command line call to run a given user command.
+ * This is a wrapper for the call function to wait for the command to
+ * finish.  When the call is finished a callback is executed.
+ *
+ * @param cmd {string} the command to execute on the command line
+ * @param [opts] {ICallOpts} optional arguments to the call
+ * @param [cb] {Function} the callback function to execute when the command
+ * finishes.
+ */
+export function callSync(cmd: string | Buffer | string[], opts: ICallOpts = null, cb: Function = nil) {
+	if (typeof opts === 'function') {
+		cb = opts;
+		opts = null;
+	}
+
+	opts = Object.assign({
+		async: false
+	}, opts);
+
+	call(cmd, opts, cb);
 }

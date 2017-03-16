@@ -4,7 +4,8 @@ import * as assert from 'assert';
 import {Fixture} from 'util.fixture';
 import {debug} from './helpers';
 import * as fs from 'fs-extra';
-import {call, nil, sanitize, isWin, isDarwin, isLinux} from '../index';
+import {call, callSync, nil, sanitize, failure, isWin, isDarwin, isLinux} from '../index';
+import * as uuid from 'uuid';
 
 describe('Executing test suite', () => {
 
@@ -79,7 +80,7 @@ describe('Executing test suite', () => {
 	});
 
 	it('Test of the call async function with bad command', (done) => {
-		call('lksjdlgjslgdjlgksjdlgkj', (err: Error, code: number) => {
+		call(uuid.v4(), (err: Error, code: number) => {
 			if (err) {
 				assert(true, `${err.message} (${code})`);
 				assert(code === 127);
@@ -157,4 +158,40 @@ describe('Executing test suite', () => {
 			done();
 		});
 	});
+
+	it('Test of synchronous call function', (done) => {
+		let cmd = '';
+		if (isWin) {
+			cmd = 'timeout 2';
+		} else if (isDarwin || isLinux) {
+			cmd = 'sleep 2';
+		}
+
+		callSync(cmd, (err: Error, code: number) => {
+			if (err) {
+				assert(false, err.message);
+				return done(failure);
+			}
+
+			assert(code === 0);
+			return done();
+		});
+
+		assert(false, `Shouldn't get here`);
+		return done(failure);
+	});
+
+	it('Test of synchronous call function with a bad command', (done) => {
+		callSync(uuid.v4(), (err: Error, code: number) => {
+			if (err) {
+				assert(code === 127);
+				assert(err.message.startsWith('Command failed: '));
+				return done();
+			}
+
+			assert(false, `${code}`);
+			return done(failure);
+		});
+	});
+
 });

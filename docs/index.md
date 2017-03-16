@@ -18,6 +18,11 @@ default for Linux/Mac, and when the environment is windows it will attempt
 to use powershell.  The shell can be overriden with the opts argument.</p>
 <p>When using default BASH options it will invoke as a login shell.</p>
 </dd>
+<dt><a href="#callSync">callSync(cmd, [opts], [cb])</a></dt>
+<dd><p>Performs an synchronous command line call to run a given user command.
+This is a wrapper for the call function to wait for the command to
+finish.  When the call is finished a callback is executed.</p>
+</dd>
 </dl>
 
 <a name="nil"></a>
@@ -60,6 +65,21 @@ When using default BASH options it will invoke as a login shell.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | cmd | <code>string</code> |  | the command to execute on the command line |
-| [opts] | <code>ICallOpts</code> | <code></code> | optional arguments to the call     - `log: any`: the output logger that will be used with this call.  It     uses a default of the console.log method.     - `verbose: {boolean}`: if true, then output is printed     - `shell: {string}`: the shell that will be invoked with this call.  It     depends on the environment.     - `shellArgs: {string[]}`: the parameters after shell, but before the     given command. |
+| [opts] | <code>ICallOpts</code> | <code></code> | optional arguments to the call     - `async: boolean`: if true, then the async version is called, otherwise     the call will be synchronous.     - `log: any`: the output logger that will be used with this call.  It     uses a default of the console.log method.     - `verbose: {boolean}`: if true, then output is printed     - `shell: {string}`: the shell that will be invoked with this call.  It     depends on the environment.     - `shellArgs: {string[]}`: the parameters after shell, but before the     given command. |
+| [cb] | <code>function</code> |  | the callback function to execute when the command finishes. |
+
+<a name="callSync"></a>
+
+## callSync(cmd, [opts], [cb])
+Performs an synchronous command line call to run a given user command.
+This is a wrapper for the call function to wait for the command to
+finish.  When the call is finished a callback is executed.
+
+**Kind**: global function  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| cmd | <code>string</code> |  | the command to execute on the command line |
+| [opts] | <code>ICallOpts</code> | <code></code> | optional arguments to the call |
 | [cb] | <code>function</code> |  | the callback function to execute when the command finishes. |
 
