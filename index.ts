@@ -11,6 +11,13 @@ export const isDarwin = /^darwin/.test(process.platform);
 export const isMac = /^darwin/.test(process.platform);
 export const isLinux = /^linux/.test(process.platform);
 
+export interface ICallOpts {
+	log?: any;
+	shell?: string;
+	shellArgs?: string[];
+	verbose?: boolean;
+}
+
 /**
  * A function that does nothing.  Use it as an empty callback initializer.
  */
@@ -53,16 +60,33 @@ export function sanitize(buffer: string | Buffer, verbose: boolean = false, log 
 
 /**
  * Performs an asynchronous command line call to run a given user command.
+ * This method uses the node `execFile` call so that the method can control
+ * the calling shell and parameters used to invoke it.  It will use BASH by
+ * default for Linux/Mac, and when the environment is windows it will attempt
+ * to use powershell.  The shell can be overriden with the opts argument.
+ *
+ * When using default BASH options it will invoke as a login shell.
  *
  * @param cmd {string} the command to execute on the command line
- * @param cb {Function} the callback function to execute when the command
+ * @param [opts] {ICallOpts} optional arguments to the call
+ *
+ *     - `log: any`: the output logger that will be used with this call.  It
+ *     uses a default of the console.log method.
+ *     - `verbose: {boolean}`: if true, then output is printed
+ *     - `shell: {string}`: the shell that will be invoked with this call.  It
+ *     depends on the environment.
+ *     - `shellArgs: {string[]}`: the parameters after shell, but before the
+ *     given command.
+ *
+ * @param [cb] {Function} the callback function to execute when the command
  * finishes.
- * @param verbose {boolean} a flag that determines if output will be written
- * to the given logger.  True by default.
- * @param log {console.log} the logger object to use with the output from
- * the command.
  */
-export function call(cmd: string | Buffer | string[], cb: Function = nil, verbose = true, log = console.log) {
+export function call(cmd: string | Buffer | string[], opts: ICallOpts = null, cb: Function = nil) {
+	if (typeof opts === 'function') {
+		cb = opts;
+		opts = null;
+	}
+
 	if (cmd == null) {
 		return cb(new Error('No command given to execute in call'), 127);
 	}
@@ -73,18 +97,26 @@ export function call(cmd: string | Buffer | string[], cb: Function = nil, verbos
 		cmd = cmd.join(' ');
 	}
 
-	if (verbose) {
-		log(`$ ${cmd}`);
+	opts = Object.assign({
+		log: console.log,
+		verbose: true,
+		shell: (isWin) ? 'powershell' : '/bin/bash',
+		shellArgs: (isWin) ? ['', cmd] : ['-l', '-c', cmd]
+	}, opts);
+
+	if (opts.verbose) {
+		opts.log(`$ ${opts.shell} ${opts.shellArgs.join(' ')}`);
 	}
-	let out = ps.exec(cmd);
+
+	let out = ps.execFile(opts.shell, opts.shellArgs);
 
 	out.stdout.on('data', (data: string | Buffer) => {
-		sanitize(data, verbose);
+		sanitize(data, opts.verbose);
 		return out;
 	});
 
 	out.stderr.on('data', (data: string | Buffer) => {
-		sanitize(data, verbose, console.error);
+		sanitize(data, opts.verbose, console.error);
 	});
 
 	out.on('close', (code: number) => {
