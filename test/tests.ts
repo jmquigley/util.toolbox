@@ -1,21 +1,10 @@
 'use strict';
 
 import * as assert from 'assert';
-import {Fixture} from 'util.fixture';
-import {debug} from './helpers';
-import * as fs from 'fs-extra';
-import {call, callSync, nil, sanitize, failure, isWin, isDarwin, isLinux} from '../index';
 import * as uuid from 'uuid';
+import {call, callSync, nil, sanitize, failure, isWin, isDarwin, isLinux} from '../index';
 
 describe('Executing test suite', () => {
-
-	after(() => {
-		debug('final cleanup: test_artifacts');
-		let directories = Fixture.cleanup();
-		directories.forEach((directory: string) => {
-			assert(!fs.existsSync(directory));
-		});
-	});
 
 	it('Testing nil', () => {
 		nil();
