@@ -1,54 +1,55 @@
 'use strict';
 
-import * as assert from 'assert';
+import test from 'ava';
 import * as uuid from 'uuid';
-import {call, callSync, failure, isDarwin, isLinux, isWin, nil, sanitize} from '../index';
+import {call, callSync, isDarwin, isLinux, isWin, nil, sanitize} from '../index';
 
-it('Testing nil', () => {
+test('Testing nil', t => {
 	nil();
+	t.pass();
 });
 
-it('Executing output function test on string', () => {
+test('Executing output function test on string', t => {
 	let data: string = 'test1\r\ntest2\r\ntest3\n';
 	let out = sanitize(data, true);
 
-	assert(out instanceof Array);
-	assert(out.length === 3);
-	assert.equal(out[0], 'test1');
-	assert.equal(out[1], 'test2');
-	assert.equal(out[2], 'test3');
+	t.truthy(out instanceof Array);
+	t.is(out.length, 3);
+	t.is(out[0], 'test1');
+	t.is(out[1], 'test2');
+	t.is(out[2], 'test3');
 });
 
-it('Executing output function test on buffer', () => {
+test('Executing output function test on buffer', t => {
 	let data: Buffer = new Buffer('test1\r\ntest2\r\ntest3\n');
 	let out = sanitize(data);
 
-	assert(out instanceof Array);
-	assert(out.length === 3);
-	assert.equal(out[0], 'test1');
-	assert.equal(out[1], 'test2');
-	assert.equal(out[2], 'test3');
+	t.truthy(out instanceof Array);
+	t.is(out.length, 3);
+	t.is(out[0], 'test1');
+	t.is(out[1], 'test2');
+	t.is(out[2], 'test3');
 });
 
-it('Executing output function test on string with multiple newlines', () => {
+test('Executing output function test on string with multiple newlines', t => {
 	let data: string = 'test1\r\n\ntest2\n\n\n\r\ntest3\n\n\n';
 	let out = sanitize(data);
 
-	assert(out instanceof Array);
-	assert(out.length === 9);
-	assert.equal(out[0], 'test1');
-	assert.equal(out[2], 'test2');
-	assert.equal(out[6], 'test3');
+	t.truthy(out instanceof Array);
+	t.is(out.length, 9);
+	t.is(out[0], 'test1');
+	t.is(out[2], 'test2');
+	t.is(out[6], 'test3');
 });
 
-it('Test sanitize with bad input', () => {
+test('Test sanitize with bad input', t => {
 	let out = sanitize(null);
 
-	assert(out instanceof Array);
-	assert(out.length === 0);
+	t.truthy(out instanceof Array);
+	t.is(out.length, 0);
 });
 
-it('Test of the call async function', (done) => {
+test.cb('Test of the call async function', t => {
 	let cmd = '';
 	if (isWin) {
 		cmd = 'Get-ChildItem Env:';
@@ -58,28 +59,29 @@ it('Test of the call async function', (done) => {
 
 	call(cmd, (err: Error, code: number) => {
 		if (err) {
-			assert(false, err.message);
+			t.fail(err.message);
 		}
 
-		assert(code === 0);
-		done();
+		t.is(code, 0);
+		t.end();
 	});
 });
 
-it('Test of the call async function with bad command', (done) => {
+test.cb('Test of the call async function with bad command', t => {
 	call(uuid.v4(), (err: Error, code: number) => {
 		if (err) {
-			assert(true, `${err.message} (${code})`);
-			assert(code !== 0);
-			done();
+			t.pass(`${err.message} (${code})`);
+			t.not(code, 0);
+			return;
 		}
 
-		assert(false, 'This should not pass');
-		done();
+		t.fail('This should not pass');
 	});
+
+	t.end();
 });
 
-it('Test of the call async function with long output', (done) => {
+test.cb('Test of the call async function with long output', t => {
 	let cmd = '';
 	if (isWin) {
 		cmd = 'dir';
@@ -89,15 +91,15 @@ it('Test of the call async function with long output', (done) => {
 
 	call(cmd, (err: Error, code: number) => {
 		if (err) {
-			assert(false, err.message);
+			t.fail(err.message);
 		}
 
-		assert(code === 0);
-		done();
+		t.is(code, 0);
+		t.end();
 	});
 });
 
-it('Test of the call async function with Buffer', (done) => {
+test.cb('Test of the call async function with Buffer', t => {
 	let cmd: Buffer = null;
 	if (isWin) {
 		cmd = new Buffer('dir');
@@ -107,15 +109,15 @@ it('Test of the call async function with Buffer', (done) => {
 
 	call(cmd, (err: Error, code: number) => {
 		if (err) {
-			assert(false, err.message);
+			t.fail(err.message);
 		}
 
-		assert(code === 0);
-		done();
+		t.is(code, 0);
+		t.end();
 	});
 });
 
-it('Test of the call async function with Array of command parts', (done) => {
+test.cb('Test of the call async function with Array of command parts', t => {
 	let cmd: string[] = [];
 	if (isWin) {
 		cmd = ['dir', '-Directory'];
@@ -125,28 +127,28 @@ it('Test of the call async function with Array of command parts', (done) => {
 
 	call(cmd, (err: Error, code: number) => {
 		if (err) {
-			assert(false, err.message);
+			t.fail(err.message);
 		}
 
-		assert(code === 0);
-		done();
+		t.is(code, 0);
+		t.end();
 	});
 });
 
-it('Test of the call async function with null command', (done) => {
+test.cb('Test of the call async function with null command', t => {
 	call(null, (err: Error, code: number) => {
 		if (err) {
-			assert(code === 127);
-			assert.equal(err.message, 'No command given to execute in call');
-			done();
+			t.is(code, 127);
+			t.is(err.message, 'No command given to execute in call');
+			return t.end();
 		}
 
-		assert(false, `${code}`);
-		done();
+		t.fail(`${code}`);
+		return t.end();
 	});
 });
 
-it('Test of synchronous call function', (done) => {
+test.cb('Test of synchronous call function', t => {
 	let cmd = '';
 	if (isWin) {
 		cmd = 'echo "powershell call"';
@@ -156,27 +158,25 @@ it('Test of synchronous call function', (done) => {
 
 	callSync(cmd, (err: Error, code: number) => {
 		if (err) {
-			assert(false, err.message);
-			return done(failure);
+			return t.fail(err.message);
 		}
 
-		assert(code === 0);
-		return done();
+		t.is(code, 0);
 	});
 
-	assert(false, `Shouldn't get here`);
-	return done(failure);
+	t.end();
 });
 
-it('Test of synchronous call function with a bad command', (done) => {
+test.cb('Test of synchronous call function with a bad command', t => {
 	callSync(uuid.v4(), (err: Error, code: number) => {
 		if (err) {
-			assert(code === 127);
-			assert(err.message.startsWith('Command failed: '));
-			return done();
+			t.is(code, 127);
+			t.truthy(err.message.startsWith('Command failed: '));
+			return;
 		}
 
-		assert(false, `${code}`);
-		return done(failure);
+		t.fail(`${code}`);
 	});
+
+	t.end();
 });
