@@ -2,8 +2,8 @@ import * as ps from 'child_process';
 import {rstrip} from 'util.rstrip';
 
 export const encoding: string = 'utf-8';
-export const success: string = 'success';
-export const failure: string = 'failure';
+export const success: number = 0;
+export const failure: number = 127;
 export const nl: string = '\n';
 
 export const isWin = /^win/.test(process.platform);
@@ -22,7 +22,9 @@ export interface ICallOpts {
 /**
  * A function that does nothing.  Use it as an empty callback initializer.
  */
-export let nil: Function = () => {
+export let nil = (err?: Error, code?: number) => {
+	err = null;
+	code = null;
 };
 
 /**
@@ -47,7 +49,7 @@ export function sanitize(buffer: string | Buffer, verbose: boolean = false, log 
 	}
 
 	buffer = rstrip(buffer);
-	let lines = buffer.split(/\r?\n|\r/);
+	const lines = buffer.split(/\r?\n|\r/);
 	lines.map(rstrip);
 
 	if (verbose) {
@@ -84,14 +86,14 @@ export function sanitize(buffer: string | Buffer, verbose: boolean = false, log 
  * @param [cb] {Function} the callback function to execute when the command
  * finishes.
  */
-export function call(cmd: string | Buffer | string[], opts: ICallOpts = null, cb: Function = nil) {
+export function call(cmd: string | Buffer | string[], opts: ICallOpts = null, cb = nil) {
 	if (typeof opts === 'function') {
 		cb = opts;
 		opts = null;
 	}
 
 	if (cmd == null) {
-		return cb(new Error('No command given to execute in call'), 127);
+		return cb(new Error('No command given to execute in call'), failure);
 	}
 
 	if (cmd instanceof Buffer) {
@@ -113,7 +115,7 @@ export function call(cmd: string | Buffer | string[], opts: ICallOpts = null, cb
 	}
 
 	if (opts.async) {
-		let out = ps.execFile(opts.shell, opts.shellArgs);
+		const out = ps.execFile(opts.shell, opts.shellArgs);
 
 		out.stdout.on('data', (data: string | Buffer) => {
 			sanitize(data, opts.verbose);
@@ -125,7 +127,7 @@ export function call(cmd: string | Buffer | string[], opts: ICallOpts = null, cb
 		});
 
 		out.on('close', (code: number) => {
-			if (code !== 0) {
+			if (code !== success) {
 				return cb(new Error(`Error executing command: ${cmd} (${code})`), code);
 			}
 
@@ -133,11 +135,11 @@ export function call(cmd: string | Buffer | string[], opts: ICallOpts = null, cb
 		});
 	} else {
 		try {
-			let data = ps.execFileSync(opts.shell, opts.shellArgs);
+			const data = ps.execFileSync(opts.shell, opts.shellArgs);
 			sanitize(data, opts.verbose);
-			return cb(null, 0);
+			return cb(null, success);
 		} catch (err) {
-			return cb(err, 127);
+			return cb(err, failure);
 		}
 	}
 }
@@ -152,7 +154,7 @@ export function call(cmd: string | Buffer | string[], opts: ICallOpts = null, cb
  * @param [cb] {Function} the callback function to execute when the command
  * finishes.
  */
-export function callSync(cmd: string | Buffer | string[], opts: ICallOpts = null, cb: Function = nil) {
+export function callSync(cmd: string | Buffer | string[], opts: ICallOpts = null, cb = nil) {
 	if (typeof opts === 'function') {
 		cb = opts;
 		opts = null;
