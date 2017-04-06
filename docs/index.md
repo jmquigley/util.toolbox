@@ -18,7 +18,7 @@ default for Linux/Mac, and when the environment is windows it will attempt
 to use powershell.  The shell can be overriden with the opts argument.</p>
 <p>When using default BASH options it will invoke as a login shell.</p>
 </dd>
-<dt><a href="#callSync">callSync(cmd, [opts], [cb])</a></dt>
+<dt><a href="#callSync">callSync(cmd, [opts], [cb])</a> ⇒ <code>number</code></dt>
 <dd><p>Performs an synchronous command line call to run a given user command.
 This is a wrapper for the call function to wait for the command to
 finish.  When the call is finished a callback is executed.</p>
@@ -70,12 +70,13 @@ When using default BASH options it will invoke as a login shell.
 
 <a name="callSync"></a>
 
-## callSync(cmd, [opts], [cb])
+## callSync(cmd, [opts], [cb]) ⇒ <code>number</code>
 Performs an synchronous command line call to run a given user command.
 This is a wrapper for the call function to wait for the command to
 finish.  When the call is finished a callback is executed.
 
 **Kind**: global function  
+**Returns**: <code>number</code> - returns 0 if the command was successful, otherwise 127.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |

@@ -153,16 +153,22 @@ export function call(cmd: string | Buffer | string[], opts: ICallOpts = null, cb
  * @param [opts] {ICallOpts} optional arguments to the call
  * @param [cb] {Function} the callback function to execute when the command
  * finishes.
+ * @returns {number} returns 0 if the command was successful, otherwise 127.
  */
-export function callSync(cmd: string | Buffer | string[], opts: ICallOpts = null, cb = nil) {
-	if (typeof opts === 'function') {
-		cb = opts;
-		opts = null;
-	}
+export function callSync(cmd: string | Buffer | string[], opts: ICallOpts = null): number {
+	let rc: number = success;
 
 	opts = Object.assign({
-		async: false
+		async: false,
+		log: console.log
 	}, opts);
 
-	call(cmd, opts, cb);
+	call(cmd, opts, (err, code) => {
+		if (err) {
+			opts.log(err.message);
+		}
+		rc = code;
+	});
+
+	return rc;
 }

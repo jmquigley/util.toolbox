@@ -3027,8 +3027,8 @@ mute-stdout@^1.0.0:
   resolved "https://registry.yarnpkg.com/mute-stdout/-/mute-stdout-1.0.0.tgz#5b32ea07eb43c9ded6130434cf926f46b2a7fd4d"
 
 nan@^2.3.0:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/nan/-/nan-2.5.1.tgz#d5b01691253326a97a2bbee9e61c55d8d60351e2"
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.6.1.tgz#8c84f7b14c96b89f57fbc838012180ec8ca39a01"
 
 natives@^1.1.0:
   version "1.1.0"
@@ -3485,8 +3485,8 @@ randomatic@^1.1.3:
     kind-of "^3.0.2"
 
 rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/rc/-/rc-1.2.0.tgz#c7de973b7b46297c041366b2fd3d2363b1697c66"
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/rc/-/rc-1.2.1.tgz#2e03e8e42ee450b8cb3dce65be1bf8974e1dfd95"
   dependencies:
     deep-extend "~0.4.0"
     ini "~1.3.0"
@@ -3630,8 +3630,8 @@ regexpu-core@^2.0.0:
     regjsparser "^0.1.4"
 
 registry-auth-token@^3.0.1:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/registry-auth-token/-/registry-auth-token-3.1.0.tgz#997c08256e0c7999837b90e944db39d8a790276b"
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/registry-auth-token/-/registry-auth-token-3.1.1.tgz#1b93317b42527732f56f88c41b73b7bf855e05a5"
   dependencies:
     rc "^1.1.6"
 
@@ -4230,8 +4230,8 @@ tslint@^5.0.0:
     tsutils "^1.4.0"
 
 tsutils@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-1.4.0.tgz#84f8a83df9967d35bf1ff3aa48c7339593d64e19"
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-1.5.0.tgz#36b571537827988b497244486a77792c8fc3563c"
 
 tunnel-agent@^0.6.0:
   version "0.6.0"
