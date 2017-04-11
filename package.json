@@ -17,12 +17,12 @@
   },
   "dependencies": {
     "util.pkgwrap": "0.0.20",
-    "util.rstrip": "0.0.14"
+    "util.rstrip": "0.0.15"
   },
   "devDependencies": {
     "@types/node": "^7.0.12",
     "@types/uuid": "^2.0.29",
-    "ava": "^0.18.2",
+    "ava": "^0.19.1",
     "coveralls": "^2.13.0",
     "gulp": "^3.9.1",
     "gulp-cli": "^1.2.2",
@@ -32,7 +32,7 @@
     "gulp-util": "^3.0.8",
     "jsdoc": "^3.4.3",
     "nyc": "^10.2.0",
-    "tslint": "^5.0.0",
+    "tslint": "^5.1.0",
     "typescript": "^2.2.2",
     "uuid": "^3.0.1"
   },
