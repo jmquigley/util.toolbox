@@ -1,9 +1,6 @@
 ## Functions
 
 <dl>
-<dt><a href="#nil">nil()</a></dt>
-<dd><p>A function that does nothing.  Use it as an empty callback initializer.</p>
-</dd>
 <dt><a href="#sanitize">sanitize(buffer, verbose, log)</a></dt>
 <dd><p>Takes a data buffer of output bytes, converts it to a string and then splits
 it on newlines for output.  By default it is just saved into a sanitized
@@ -25,12 +22,6 @@ finish.  When the call is finished a callback is executed.</p>
 </dd>
 </dl>
 
-<a name="nil"></a>
-
-## nil()
-A function that does nothing.  Use it as an empty callback initializer.
-
-**Kind**: global function  
 <a name="sanitize"></a>
 
 ## sanitize(buffer, verbose, log)
