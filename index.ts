@@ -22,9 +22,9 @@ export interface ICallOpts {
 /**
  * A function that does nothing.  Use it as an empty callback initializer.
  */
-export let nil = (err?: Error, code?: number) => {
+export let nil = (err?: Error, val?: any) => {
 	err = null;
-	code = null;
+	val = null;
 };
 
 /**
