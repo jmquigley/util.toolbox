@@ -16,7 +16,7 @@
     "node": ">=7.5"
   },
   "dependencies": {
-    "util.pkgwrap": "0.0.20",
+    "util.pkgwrap": "0.0.21",
     "util.rstrip": "0.0.15"
   },
   "devDependencies": {
