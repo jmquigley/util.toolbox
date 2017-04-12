@@ -2,7 +2,7 @@
 
 import test from 'ava';
 import * as uuid from 'uuid';
-import {call, callSync, isDarwin, isLinux, isWin, nil, sanitize} from '../index';
+import {call, callSync, failure, isDarwin, isLinux, isWin, nil, sanitize, success} from '../index';
 
 test('Testing nil', t => {
 	nil();
@@ -148,7 +148,7 @@ test.cb('Test of the call async function with null command', t => {
 	});
 });
 
-test.cb('Test of synchronous call function', t => {
+test('Test of synchronous call function', t => {
 	let cmd = '';
 	if (isWin) {
 		cmd = 'echo "powershell call"';
@@ -156,27 +156,11 @@ test.cb('Test of synchronous call function', t => {
 		cmd = 'sleep 2';
 	}
 
-	callSync(cmd, (err: Error, code: number) => {
-		if (err) {
-			return t.fail(err.message);
-		}
-
-		t.is(code, 0);
-	});
-
-	t.end();
+	let rc = callSync(cmd);
+	t.is(rc, success);
 });
 
-test.cb('Test of synchronous call function with a bad command', t => {
-	callSync(uuid.v4(), (err: Error, code: number) => {
-		if (err) {
-			t.is(code, 127);
-			t.truthy(err.message.startsWith('Command failed: '));
-			return;
-		}
-
-		t.fail(`${code}`);
-	});
-
-	t.end();
+test('Test of synchronous call function with a bad command', t => {
+	let rc = callSync(uuid.v4());
+	t.is(rc, failure);
 });
