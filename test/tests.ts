@@ -10,8 +10,8 @@ test('Testing nil', t => {
 });
 
 test('Executing output function test on string', t => {
-	let data: string = 'test1\r\ntest2\r\ntest3\n';
-	let out = sanitize(data, true);
+	const data: string = 'test1\r\ntest2\r\ntest3\n';
+	const out = sanitize(data, true);
 
 	t.truthy(out instanceof Array);
 	t.is(out.length, 3);
@@ -21,8 +21,8 @@ test('Executing output function test on string', t => {
 });
 
 test('Executing output function test on buffer', t => {
-	let data: Buffer = new Buffer('test1\r\ntest2\r\ntest3\n');
-	let out = sanitize(data);
+	const data: Buffer = new Buffer('test1\r\ntest2\r\ntest3\n');
+	const out = sanitize(data);
 
 	t.truthy(out instanceof Array);
 	t.is(out.length, 3);
@@ -32,8 +32,8 @@ test('Executing output function test on buffer', t => {
 });
 
 test('Executing output function test on string with multiple newlines', t => {
-	let data: string = 'test1\r\n\ntest2\n\n\n\r\ntest3\n\n\n';
-	let out = sanitize(data);
+	const data: string = 'test1\r\n\ntest2\n\n\n\r\ntest3\n\n\n';
+	const out = sanitize(data);
 
 	t.truthy(out instanceof Array);
 	t.is(out.length, 9);
@@ -43,7 +43,7 @@ test('Executing output function test on string with multiple newlines', t => {
 });
 
 test('Test sanitize with bad input', t => {
-	let out = sanitize(null);
+	const out = sanitize(null);
 
 	t.truthy(out instanceof Array);
 	t.is(out.length, 0);
@@ -156,11 +156,11 @@ test('Test of synchronous call function', t => {
 		cmd = 'sleep 2';
 	}
 
-	let rc = callSync(cmd);
+	const rc = callSync(cmd);
 	t.is(rc, success);
 });
 
 test('Test of synchronous call function with a bad command', t => {
-	let rc = callSync(uuid.v4());
+	const rc = callSync(uuid.v4());
 	t.is(rc, failure);
 });
