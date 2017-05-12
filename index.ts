@@ -1,5 +1,8 @@
 import * as ps from 'child_process';
+import * as fs from 'fs-extra';
+import * as path from 'path';
 import {rstrip} from 'util.rstrip';
+import * as uuid from 'uuid';
 
 export const encoding: string = 'utf-8';
 export const success: number = 0;
@@ -28,40 +31,6 @@ export let nil: INilCallback = (err?: Error, val?: any): void => {
 	err = null;
 	val = null;
 };
-
-/**
- * Takes a data buffer of output bytes, converts it to a string and then splits
- * it on newlines for output.  By default it is just saved into a sanitized
- * array.  If verbose is set to true, then the buffer it output to the console
- * line by line.
- * @param buffer {string} the output bytes to convert and print to log.
- * @param verbose {boolean} if true, then the sanitized output is sent to
- * the console.
- * @param log {console.log} the output logger to write the output when verbose.
- * @retuns {string[]} an array of string that represent the lines given with
- * the input buffer.
- */
-export function sanitize(buffer: string | Buffer, verbose: boolean = false, log = console.log) {
-	if (buffer == null && typeof buffer !== 'string' && !(buffer instanceof Buffer)) {
-		return [];
-	}
-
-	if (buffer instanceof Buffer) {
-		buffer = buffer.toString();
-	}
-
-	buffer = rstrip(buffer);
-	const lines = buffer.split(/\r?\n|\r/);
-	lines.map(rstrip);
-
-	if (verbose) {
-		lines.forEach((line: string) => {
-			log(line);
-		});
-	}
-
-	return lines;
-}
 
 /**
  * Performs an asynchronous command line call to run a given user command.
@@ -173,4 +142,62 @@ export function callSync(cmd: string | Buffer | string[], opts: ICallOpts = null
 	});
 
 	return rc;
+}
+
+/**
+ * Retrieves a list of directories from the given input path.
+ * @param src {string} the source directory to search for sub directories
+ * @returns {Array} a list of directories.
+ */
+export function getDirectories(src: string): string[] {
+	return fs.readdirSync(src)
+		.filter((file: string) => fs.statSync(path.join(src, file)).isDirectory());
+}
+
+/**
+ * Retrieves a version 4 uuid.  It can be with or without the dash characters.
+ * @param nodash {boolean} if true, the dashes are removed, otherwise just a
+ * v4 uuid is created.
+ * @returns {string} a v4 uuid
+ */
+export function getUUID(nodash = false): string {
+	if (nodash) {
+		return uuid.v4().replace(/-/g, '');
+	}
+
+	return uuid.v4();
+}
+
+/**
+ * Takes a data buffer of output bytes, converts it to a string and then splits
+ * it on newlines for output.  By default it is just saved into a sanitized
+ * array.  If verbose is set to true, then the buffer it output to the console
+ * line by line.
+ * @param buffer {string} the output bytes to convert and print to log.
+ * @param verbose {boolean} if true, then the sanitized output is sent to
+ * the console.
+ * @param log {console.log} the output logger to write the output when verbose.
+ * @retuns {string[]} an array of string that represent the lines given with
+ * the input buffer.
+ */
+export function sanitize(buffer: string | Buffer, verbose: boolean = false, log = console.log) {
+	if (buffer == null && typeof buffer !== 'string' && !(buffer instanceof Buffer)) {
+		return [];
+	}
+
+	if (buffer instanceof Buffer) {
+		buffer = buffer.toString();
+	}
+
+	buffer = rstrip(buffer);
+	const lines = buffer.split(/\r?\n|\r/);
+	lines.map(rstrip);
+
+	if (verbose) {
+		lines.forEach((line: string) => {
+			log(line);
+		});
+	}
+
+	return lines;
 }

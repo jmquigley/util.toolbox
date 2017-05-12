@@ -1,8 +1,21 @@
 'use strict';
 
 import test from 'ava';
+import * as path from 'path';
 import * as uuid from 'uuid';
-import {call, callSync, failure, isDarwin, isLinux, isWin, nil, sanitize, success} from '../index';
+import {
+	call,
+	callSync,
+	failure,
+	getDirectories,
+	getUUID,
+	isDarwin,
+	isLinux,
+	isWin,
+	nil,
+	sanitize,
+	success
+} from '../index';
 
 test('Testing nil', t => {
 	nil();
@@ -163,4 +176,31 @@ test('Test of synchronous call function', t => {
 test('Test of synchronous call function with a bad command', t => {
 	const rc = callSync(uuid.v4());
 	t.is(rc, failure);
+});
+
+test('Test retrieval of directories', t => {
+	const fixtureDir = path.join(process.cwd(), 'test', 'fixtures');
+	const dirs = getDirectories(fixtureDir);
+
+	t.truthy(dirs);
+	t.true(dirs instanceof Array);
+	t.is(dirs.length, 3);
+	t.deepEqual(dirs, ['dir1', 'dir2', 'dir3']);
+});
+
+test('Test UUID retrieval function', t => {
+
+	// Test with dashes
+	let uuid = getUUID();
+	t.truthy(uuid);
+	t.true(typeof uuid === 'string');
+	t.is(uuid.length, 36);
+	t.regex(uuid, /.{8}-.{4}-.{4}-.{4}-.{12}/);
+
+	// Test without dashes
+	uuid = getUUID(true);
+	t.truthy(uuid);
+	t.true(typeof uuid === 'string');
+	t.is(uuid.length, 32);
+	t.regex(uuid, /.{32}/);
 });
