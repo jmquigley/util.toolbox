@@ -20,6 +20,8 @@ The toolbox contains the following functions:
 
 - [call](docs/index.md#call)
 - [callSync](docs/index.md#callSync)
+- [getDirectories](docs/index.md#getDirectories)
+- [getUUID](docs/index.md#getUUID)
 - [nil](docs/index.md#nil)
 - [sanitize](docs/index.md#sanitize)
 
