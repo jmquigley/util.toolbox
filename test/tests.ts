@@ -188,6 +188,15 @@ test('Test retrieval of directories', t => {
 	t.deepEqual(dirs, ['dir1', 'dir2', 'dir3']);
 });
 
+test('Test retrieval from a path with no directories within it (negative test)', t => {
+	const fixtureDir = path.join(process.cwd(), 'test', 'fixtures', 'dir1');
+	const dirs = getDirectories(fixtureDir);
+
+	t.truthy(dirs);
+	t.true(dirs instanceof Array);
+	t.is(dirs.length, 0);
+});
+
 test('Test UUID retrieval function', t => {
 
 	// Test with dashes
