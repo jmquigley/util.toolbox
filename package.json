@@ -17,13 +17,13 @@
   },
   "dependencies": {
     "fs-extra": "^3.0.1",
-    "util.pkgwrap": "0.0.27",
-    "util.rstrip": "0.0.17",
+    "util.pkgwrap": "0.0.43",
+    "util.rstrip": "0.0.18",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
-    "@types/fs-extra": "^3.0.0",
-    "@types/node": "^7.0.18",
+    "@types/fs-extra": "^3.0.1",
+    "@types/node": "^7.0.21",
     "@types/uuid": "^2.0.29",
     "ava": "^0.19.1",
     "coveralls": "^2.13.1",
@@ -42,13 +42,14 @@
   "main": "./index.js",
   "types": "./index.d.ts",
   "scripts": {
-    "all": "npm install && npm run lint && npm run build && npm test && npm run report",
-    "build": "./node_modules/.bin/pkgwrap --build && npm run docs",
-    "coverage": "./node_modules/.bin/pkgwrap --coverage",
-    "docs": "./node_modules/.bin/gulp docs",
-    "lint": "./node_modules/.bin/pkgwrap --lint",
-    "postinstall": "./node_modules/.bin/pkgwrap --postinstall",
-    "report": "./node_modules/.bin/pkgwrap --reporting",
-    "test": "./node_modules/.bin/pkgwrap --testing --ava"
+    "all": "npm install && npm run clean && npm run lint && npm run build && npm test && npm run report",
+    "build": "pkgwrap --build && npm run docs",
+    "clean": "pkgwrap --clean",
+    "coverage": "pkgwrap --coverage",
+    "docs": "gulp docs",
+    "lint": "pkgwrap --lint",
+    "postinstall": "pkgwrap --postinstall",
+    "report": "pkgwrap --reporting",
+    "test": "pkgwrap --testing --ava"
   }
 }
