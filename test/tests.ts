@@ -13,6 +13,7 @@ import {
 	isLinux,
 	isWin,
 	nil,
+	regexUUID,
 	sanitize,
 	success
 } from '../index';
@@ -204,7 +205,7 @@ test('Test UUID retrieval function', t => {
 	t.truthy(uuid);
 	t.true(typeof uuid === 'string');
 	t.is(uuid.length, 36);
-	t.regex(uuid, /.{8}-.{4}-.{4}-.{4}-.{12}/);
+	t.regex(uuid, regexUUID);
 
 	// Test without dashes
 	uuid = getUUID(true);

@@ -14,6 +14,8 @@ export const isDarwin = /^darwin/.test(process.platform);
 export const isMac = /^darwin/.test(process.platform);
 export const isLinux = /^linux/.test(process.platform);
 
+export const regexUUID = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
+
 export interface ICallOpts {
 	async?: boolean;
 	log?: any;
