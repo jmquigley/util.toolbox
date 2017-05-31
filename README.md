@@ -25,8 +25,16 @@ The toolbox contains the following functions:
 - [nil](docs/index.md#nil)
 - [sanitize](docs/index.md#sanitize)
 
-The toolbox contains the following exposed variables:
+It contains the following exposed variables:
 
-- `isWin` -- true if the operating system is windows, otherwise false.
-- `isMac` -- true if the operating system is OSX, otherwise false.
+- `isDarwin` -- true if the operating system is OSX, otherwise false (same as `isMac`)
 - `isLinux` -- true if the operating system is Linux, otherwise false.
+- `isMac` -- true if the operating system is OSX, otherwise false.
+- `isWin` -- true if the operating system is windows, otherwise false.
+
+- `success` -- the number 0 for a successful operation
+- `failure` -- the number 127 for a failed operation
+
+It also contains the following regex strings:
+
+- `regexUUID` - matches a [universally unique id (UUID)](https://en.wikipedia.org/wiki/Universally_unique_identifier)

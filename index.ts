@@ -9,10 +9,10 @@ export const success: number = 0;
 export const failure: number = 127;
 export const nl: string = '\n';
 
-export const isWin = /^win/.test(process.platform);
 export const isDarwin = /^darwin/.test(process.platform);
-export const isMac = /^darwin/.test(process.platform);
 export const isLinux = /^linux/.test(process.platform);
+export const isMac = /^darwin/.test(process.platform);
+export const isWin = /^win/.test(process.platform);
 
 export const regexUUID = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
 
