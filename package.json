@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "fs-extra": "^3.0.1",
-    "util.pkgwrap": "0.0.56",
-    "util.rstrip": "0.0.20",
+    "util.pkgwrap": "0.0.57",
+    "util.rstrip": "0.0.21",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
