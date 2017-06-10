@@ -2,7 +2,8 @@ import * as ps from 'child_process';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import {rstrip} from 'util.rstrip';
-import * as uuid from 'uuid';
+
+const uuid = require('uuid');
 
 export const encoding: string = 'utf-8';
 export const success: number = 0;
@@ -32,6 +33,15 @@ export type INilCallback = (err?: Error, val?: any) => void;
 export let nil: INilCallback = (err?: Error, val?: any): void => {
 	err = null;
 	val = null;
+};
+
+/**
+ * A function that can be used to initialize an event callback.  This function
+ * does nothing so a callback will do
+ */
+export type INilEventCallback = () => void;
+
+export let nilEvent: INilEventCallback = (): void => {
 };
 
 /**

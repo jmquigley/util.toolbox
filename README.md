@@ -23,6 +23,7 @@ The toolbox contains the following functions:
 - [getDirectories](docs/index.md#getDirectories)
 - [getUUID](docs/index.md#getUUID)
 - [nil](docs/index.md#nil)
+- [nil](docs/index.md#nilEvent)
 - [sanitize](docs/index.md#sanitize)
 
 It contains the following exposed variables:

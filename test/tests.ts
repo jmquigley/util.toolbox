@@ -2,7 +2,6 @@
 
 import test from 'ava';
 import * as path from 'path';
-import * as uuid from 'uuid';
 import {
 	call,
 	callSync,
@@ -13,13 +12,17 @@ import {
 	isLinux,
 	isWin,
 	nil,
+	nilEvent,
 	regexUUID,
 	sanitize,
 	success
 } from '../index';
 
+const uuid = require('uuid');
+
 test('Testing nil', t => {
 	nil();
+	nilEvent();
 	t.pass();
 });
 
@@ -201,16 +204,16 @@ test('Test retrieval from a path with no directories within it (negative test)',
 test('Test UUID retrieval function', t => {
 
 	// Test with dashes
-	let uuid = getUUID();
-	t.truthy(uuid);
-	t.true(typeof uuid === 'string');
-	t.is(uuid.length, 36);
-	t.regex(uuid, regexUUID);
+	let testUUID = getUUID();
+	t.truthy(testUUID);
+	t.true(typeof testUUID === 'string');
+	t.is(testUUID.length, 36);
+	t.regex(testUUID, regexUUID);
 
 	// Test without dashes
-	uuid = getUUID(true);
-	t.truthy(uuid);
-	t.true(typeof uuid === 'string');
-	t.is(uuid.length, 32);
-	t.regex(uuid, /.{32}/);
+	testUUID = getUUID(true);
+	t.truthy(testUUID);
+	t.true(typeof testUUID === 'string');
+	t.is(testUUID.length, 32);
+	t.regex(testUUID, /.{32}/);
 });
