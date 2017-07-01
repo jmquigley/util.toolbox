@@ -69,7 +69,7 @@ export let nilEvent: INilEventCallback = (): void => {
  * @param [cb] {Function} the callback function to execute when the command
  * finishes.
  */
-export function call(cmd: string | Buffer | string[], opts: ICallOpts = null, cb = nil) {
+export function call(cmd: string | Buffer | string[], opts: any = null, cb = nil) {
 	if (typeof opts === 'function') {
 		cb = opts;
 		opts = null;
@@ -138,7 +138,7 @@ export function call(cmd: string | Buffer | string[], opts: ICallOpts = null, cb
  * finishes.
  * @returns {number} returns 0 if the command was successful, otherwise 127.
  */
-export function callSync(cmd: string | Buffer | string[], opts: ICallOpts = null): number {
+export function callSync(cmd: string | Buffer | string[], opts: any = null): number {
 	let rc: number = success;
 
 	opts = Object.assign({
