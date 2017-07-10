@@ -1,6 +1,6 @@
 {
   "name": "util.toolbox",
-  "version": "0.0.37",
+  "version": "0.0.38",
   "author": "jmquigley <jmquigley@outlook.com>",
   "description": "A set of functions used for build and testing across projects",
   "private": false,
