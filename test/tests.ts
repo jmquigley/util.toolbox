@@ -14,6 +14,7 @@ import {
 	nil,
 	nilEvent,
 	regexEmail,
+	regexURL,
 	regexUUID,
 	sanitize,
 	success
@@ -238,5 +239,19 @@ test('Test Email regex string', t => {
 
 	for (const addr of addrs) {
 		t.regex(addr, regexEmail);
+	}
+});
+
+test('Test URL regex string', t => {
+	const urls: string[] = [
+		'http://example.com',
+		'http://google.com',
+		'http://something.org'
+	];
+
+	t.truthy(regexURL);
+
+	for (const url of urls) {
+		t.regex(url, regexURL);
 	}
 });
