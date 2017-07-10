@@ -15,6 +15,10 @@ export const isLinux = /^linux/.test(process.platform);
 export const isMac = /^darwin/.test(process.platform);
 export const isWin = /^win/.test(process.platform);
 
+// Uses a regex that will catch 99.99% of email addresses in use today.  It is not perfect
+// http://www.regular-expressions.info/email.html
+export const regexEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+
 export const regexUUID = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
 
 export interface ICallOpts {
