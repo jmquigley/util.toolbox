@@ -187,6 +187,16 @@ export function getUUID(nodash = false): string {
 }
 
 /**
+ * Takes a Set of strings and converts it to a string that is joined by a
+ * delimiter.
+ * @param obj {Set<string>} the set of strings that will be joined together
+ * @return {string} a new string
+ */
+export function join(obj: Set<string>, delimiter: string = ''): string {
+	return Array.from(obj).join(delimiter);
+}
+
+/**
  * Takes a data buffer of output bytes, converts it to a string and then splits
  * it on newlines for output.  By default it is just saved into a sanitized
  * array.  If verbose is set to true, then the buffer it output to the console

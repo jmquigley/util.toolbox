@@ -11,6 +11,7 @@ import {
 	isDarwin,
 	isLinux,
 	isWin,
+	join,
 	nil,
 	nilEvent,
 	regexEmail,
@@ -254,4 +255,12 @@ test('Test URL regex string', t => {
 	for (const url of urls) {
 		t.regex(url, regexURL);
 	}
+});
+
+test('Test join function to combine a set into a string', t => {
+	const x: Set<string> = new Set<string>(['a', 'b', 'c']);
+
+	t.is(join(x), 'abc');
+	t.is(join(x, ' '), 'a b c');
+	t.is(join(x, '@'), 'a@b@c');
 });
