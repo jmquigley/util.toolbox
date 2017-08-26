@@ -24,7 +24,7 @@ The toolbox contains the following functions:
 - [getUUID](docs/index.md#getUUID)
 - [join](docs/index.md#join)
 - [nil](docs/index.md#nil)
-- [nil](docs/index.md#nilEvent)
+- [nilEvent](docs/index.md#nilEvent)
 - [sanitize](docs/index.md#sanitize)
 
 It contains the following exposed variables:
@@ -39,4 +39,6 @@ It contains the following exposed variables:
 
 It also contains the following regex strings:
 
+- `regexEmail` - matches [99.99% of all email](http://www.regular-expressions.info/email.html) addresses in use today
+- `regexURL` - matches a [Uniform Resource Locator (URL)](https://en.wikipedia.org/wiki/URL)
 - `regexUUID` - matches a [universally unique id (UUID)](https://en.wikipedia.org/wiki/Universally_unique_identifier)

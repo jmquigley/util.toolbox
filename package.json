@@ -23,11 +23,11 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^4.0.0",
-    "@types/node": "^8.0.19",
-    "ava": "^0.21.0",
+    "@types/node": "^8.0.25",
+    "ava": "^0.22.0",
     "coveralls": "^2.13.1",
     "nyc": "^11.1.0",
-    "tslint": "^5.6.0",
+    "tslint": "^5.7.0",
     "typescript": "^2.4.2"
   },
   "main": "./index.js",
