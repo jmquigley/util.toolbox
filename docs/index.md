@@ -17,6 +17,18 @@ finish.  When the call is finished a callback is executed.</p>
 <dt><a href="#getDirectories">getDirectories(src)</a> ⇒ <code>Array</code></dt>
 <dd><p>Retrieves a list of directories from the given input path.</p>
 </dd>
+<dt><a href="#getRandomInt">getRandomInt(min, max)</a> ⇒ <code>number</code></dt>
+<dd><p>Generates a random integer between the two specified values.  The value is
+no lower than min and not equal to max (not inclusive).  Do not use this
+for cryptography.</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random</a></p>
+</dd>
+<dt><a href="#getRandomIntInclusive">getRandomIntInclusive(min, max)</a> ⇒ <code>number</code></dt>
+<dd><p>Generates a random integer between the two specified values.  The value is
+no lower than min and less than or equal to max (inclusive).  Do not use this
+for cryptography.</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random</a></p>
+</dd>
 <dt><a href="#getUUID">getUUID(nodash)</a> ⇒ <code>string</code></dt>
 <dd><p>Retrieves a version 4 uuid.  It can be with or without the dash characters.</p>
 </dd>
@@ -78,6 +90,40 @@ Retrieves a list of directories from the given input path.
 | Param | Type | Description |
 | --- | --- | --- |
 | src | <code>string</code> | the source directory to search for sub directories |
+
+<a name="getRandomInt"></a>
+
+## getRandomInt(min, max) ⇒ <code>number</code>
+Generates a random integer between the two specified values.  The value is
+no lower than min and not equal to max (not inclusive).  Do not use this
+for cryptography.
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+
+**Kind**: global function  
+**Returns**: <code>number</code> - a pseudo random number  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| min | <code>number</code> | the smallest integer to use, inclusive |
+| max | <code>number</code> | the largest integer to use, non inclusive |
+
+<a name="getRandomIntInclusive"></a>
+
+## getRandomIntInclusive(min, max) ⇒ <code>number</code>
+Generates a random integer between the two specified values.  The value is
+no lower than min and less than or equal to max (inclusive).  Do not use this
+for cryptography.
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+
+**Kind**: global function  
+**Returns**: <code>number</code> - a pseudo random number  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| min | <code>number</code> | the smallest integer to use, inclusive |
+| max | <code>number</code> | the largest integer to use, inclusive |
 
 <a name="getUUID"></a>
 

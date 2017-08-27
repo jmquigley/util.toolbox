@@ -7,6 +7,8 @@ import {
 	callSync,
 	failure,
 	getDirectories,
+	getRandomInt,
+	getRandomIntInclusive,
 	getUUID,
 	isDarwin,
 	isLinux,
@@ -263,4 +265,22 @@ test('Test join function to combine a set into a string', t => {
 	t.is(join(x), 'abc');
 	t.is(join(x, ' '), 'a b c');
 	t.is(join(x, '@'), 'a@b@c');
+});
+
+test('Test generating random integers', t => {
+	const n: number = 1000;
+
+	for (let i = 0; i < n; i++) {
+		const val = getRandomInt(1, 6);
+		t.true(val >= 1 && val < 6);
+	}
+});
+
+test('Test generating random integers with inclusive max', t => {
+	const n: number = 1000;
+
+	for (let i = 0; i < n; i++) {
+		const val = getRandomIntInclusive(1, 6);
+		t.true(val >= 1 && val <= 6);
+	}
 });

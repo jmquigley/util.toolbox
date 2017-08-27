@@ -175,6 +175,42 @@ export function getDirectories(src: string): string[] {
 }
 
 /**
+ * Generates a random integer between the two specified values.  The value is
+ * no lower than min and not equal to max (not inclusive).  Do not use this
+ * for cryptography.
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+ *
+ * @param min {number} the smallest integer to use, inclusive
+ * @param max {number} the largest integer to use, non inclusive
+ * @returns {number} a pseudo random number
+ */
+export function getRandomInt(min: number, max: number): number {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+
+	return Math.floor(Math.random() * (max - min)) + min;
+}
+
+/**
+ * Generates a random integer between the two specified values.  The value is
+ * no lower than min and less than or equal to max (inclusive).  Do not use this
+ * for cryptography.
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+ *
+ * @param min {number} the smallest integer to use, inclusive
+ * @param max {number} the largest integer to use, inclusive
+ * @returns {number} a pseudo random number
+ */
+export function getRandomIntInclusive(min: number, max: number): number {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
  * Retrieves a version 4 uuid.  It can be with or without the dash characters.
  * @param nodash {boolean} if true, the dashes are removed, otherwise just a
  * v4 uuid is created.
