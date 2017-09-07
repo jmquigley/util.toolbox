@@ -17,6 +17,7 @@ import {
 	nil,
 	nilEvent,
 	regexEmail,
+	regexIndexOf,
 	regexURL,
 	regexUUID,
 	sanitize,
@@ -283,4 +284,18 @@ test('Test generating random integers with inclusive max', t => {
 		const val = getRandomIntInclusive(1, 6);
 		t.true(val >= 1 && val <= 6);
 	}
+});
+
+test('Test searching for index in string using regex', t => {
+
+	t.is(regexIndexOf('abcdefghijk', /a/), 0);
+	t.is(regexIndexOf('abcdefghijk', /k/), 10);
+	t.is(regexIndexOf('abcdefghijk', /def/), 3);
+	t.is(regexIndexOf('123abcdefghijklmnop', /[a-zA-Z]/), 3);
+
+	// not found
+	t.is(regexIndexOf('abcdefghijk', /[0-9]/), -1);
+
+	// finds the second set of 'aaa', but contains abs index
+	t.is(regexIndexOf('aaabbbcccaaa', /aaa/, 3), 9);
 });

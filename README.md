@@ -27,6 +27,7 @@ The toolbox contains the following functions:
 - [join](docs/index.md#join)
 - [nil](docs/index.md#nil)
 - [nilEvent](docs/index.md#nilEvent)
+- [regexIndexOf](docs/index.md#regexIndexOf)
 - [sanitize](docs/index.md#sanitize)
 
 It contains the following exposed variables:

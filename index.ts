@@ -235,6 +235,19 @@ export function join(obj: Set<string>, delimiter: string = ''): string {
 }
 
 /**
+ * Searches for the first location (index) within a given string using a regex
+ * @param text {string} the string to search within
+ * @param re {RegExp} the regex object to search with
+ * @param i {number} a starting index value
+ * @return {number} the index value location where the regex match was found
+ * If it is not found, then -1 is returned.
+ */
+export function regexIndexOf(text: string, re: RegExp, start: number = 0) {
+	const idx: number = text.slice(start).search(re);
+	return idx < 0 ? -1 : idx + start;
+}
+
+/**
  * Takes a data buffer of output bytes, converts it to a string and then splits
  * it on newlines for output.  By default it is just saved into a sanitized
  * array.  If verbose is set to true, then the buffer it output to the console
