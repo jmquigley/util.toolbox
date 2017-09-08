@@ -3713,9 +3713,9 @@ util.pkgwrap@0.0.68:
     workerpool "^2.2.4"
     yargs "^8.0.2"
 
-util.rstrip@0.0.25:
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/util.rstrip/-/util.rstrip-0.0.25.tgz#3de28a6e70bd3bac0b1b085b95b6dd5eebda4e69"
+util.rstrip@0.0.26:
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/util.rstrip/-/util.rstrip-0.0.26.tgz#09e0e3cd90d71622dc985bab08e2b6d66b42e99e"
   dependencies:
     util.pkgwrap "0.0.68"
 

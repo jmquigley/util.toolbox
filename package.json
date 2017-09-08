@@ -18,7 +18,7 @@
   "dependencies": {
     "fs-extra": "^4.0.1",
     "util.pkgwrap": "0.0.68",
-    "util.rstrip": "0.0.25",
+    "util.rstrip": "0.0.26",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
@@ -33,8 +33,8 @@
   "main": "./index.js",
   "types": "./index.d.ts",
   "scripts": {
-    "all": "npm install && npm run clean && npm run lint && npm run build && npm test && npm run report",
-    "build": "pkgwrap --build && npm run docs",
+    "all": "yarn install && yarn run clean && yarn run lint && yarn run build && yarn run docs && yarn test && yarn run report",
+    "build": "pkgwrap --build",
     "clean": "pkgwrap --clean",
     "coverage": "pkgwrap --coverage",
     "docs": "pkgwrap --docs",
