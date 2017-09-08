@@ -17,18 +17,18 @@
   },
   "dependencies": {
     "fs-extra": "^4.0.1",
-    "util.pkgwrap": "0.0.67",
-    "util.rstrip": "0.0.23",
+    "util.pkgwrap": "0.0.68",
+    "util.rstrip": "0.0.25",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
-    "@types/fs-extra": "^4.0.0",
-    "@types/node": "^8.0.25",
+    "@types/fs-extra": "^4.0.2",
+    "@types/node": "^8.0.28",
     "ava": "^0.22.0",
     "coveralls": "^2.13.1",
-    "nyc": "^11.1.0",
+    "nyc": "^11.2.1",
     "tslint": "^5.7.0",
-    "typescript": "^2.4.2"
+    "typescript": "^2.5.2"
   },
   "main": "./index.js",
   "types": "./index.d.ts",
