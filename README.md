@@ -27,7 +27,6 @@ The toolbox contains the following functions:
 - [getRandomIntInclusive](docs/index.md#getRandomIntInclusive)
 - [getUUID](docs/index.md#getUUID)
 - [join](docs/index.md#join)
-- [matches](docs/index.md#matches)
 - [nil](docs/index.md#nil)
 - [nilEvent](docs/index.md#nilEvent)
 - [regexIndexOf](docs/index.md#regexIndexOf)

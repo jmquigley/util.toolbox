@@ -36,11 +36,6 @@ for cryptography.</p>
 <dd><p>Takes a Set of strings and converts it to a string that is joined by a
 delimiter.</p>
 </dd>
-<dt><a href="#matches">matches(text, re)</a> ⇒ <code>IMatch</code></dt>
-<dd><p>Searches a string for N instances of a given regex.  The <code>/g</code> flag must
-be set on the regex for this work correctly.  The function will check
-for this flag and throws an Exception if it is not set.</p>
-</dd>
 <dt><a href="#regexIndexOf">regexIndexOf(text, re, i)</a> ⇒ <code>number</code></dt>
 <dd><p>Searches for the first location (index) within a given string using a regex</p>
 </dd>
@@ -157,22 +152,6 @@ delimiter.
 | Param | Type | Description |
 | --- | --- | --- |
 | obj | <code>Set.&lt;string&gt;</code> | the set of strings that will be joined together |
-
-<a name="matches"></a>
-
-## matches(text, re) ⇒ <code>IMatch</code>
-Searches a string for N instances of a given regex.  The `/g` flag must
-be set on the regex for this work correctly.  The function will check
-for this flag and throws an Exception if it is not set.
-
-**Kind**: global function  
-**Returns**: <code>IMatch</code> - an array of IMatch objects.  They contain `result',
-`text`, `start` index, `end` index within the original string.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| text | <code>string</code> | the text string to search |
-| re | <code>RegExp</code> | the regular expression used in the search |
 
 <a name="regexIndexOf"></a>
 
