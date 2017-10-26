@@ -10,21 +10,11 @@ const uuid = require('uuid');
 export const encoding: string = 'utf-8';
 export const success: number = 0;
 export const failure: number = 127;
-export const nl: string = '\n';
-export const sp: string = '\u200b';  // zero width, non breaking space
 
 export const isDarwin = /^darwin/.test(process.platform);
 export const isLinux = /^linux/.test(process.platform);
 export const isMac = /^darwin/.test(process.platform);
 export const isWin = /^win/.test(process.platform);
-
-// Uses a regex that will catch 99.99% of email addresses in use today.  It is not perfect
-// http://www.regular-expressions.info/email.html
-export const regexEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-
-export const regexURL = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
-
-export const regexUUID = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
 
 export interface ICallOpts {
 	async?: boolean;
@@ -226,29 +216,6 @@ export function getUUID(nodash = false): string {
 }
 
 /**
- * Takes a Set of strings and converts it to a string that is joined by a
- * delimiter.
- * @param obj {Set<string>} the set of strings that will be joined together
- * @return {string} a new string
- */
-export function join(obj: Set<string>, delimiter: string = ''): string {
-	return Array.from(obj).join(delimiter);
-}
-
-/**
- * Searches for the first location (index) within a given string using a regex
- * @param text {string} the string to search within
- * @param re {RegExp} the regex object to search with
- * @param i {number} a starting index value
- * @return {number} the index value location where the regex match was found
- * If it is not found, then -1 is returned.
- */
-export function regexIndexOf(text: string, re: RegExp, start: number = 0) {
-	const idx: number = text.slice(start).search(re);
-	return idx < 0 ? -1 : idx + start;
-}
-
-/**
  * Takes a data buffer of output bytes, converts it to a string and then splits
  * it on newlines for output.  By default it is just saved into a sanitized
  * array.  If verbose is set to true, then the buffer it output to the console
@@ -270,8 +237,7 @@ export function sanitize(buffer: string | Buffer, verbose: boolean = false, log 
 	}
 
 	buffer = rstrip(buffer);
-	const lines = buffer.split(/\r?\n|\r/);
-	lines.map(rstrip);
+	const lines = buffer.split(/\r\n|\r|\n/).map(rstrip);
 
 	if (verbose) {
 		lines.forEach((line: string) => {

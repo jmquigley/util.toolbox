@@ -1,7 +1,10 @@
 'use strict';
 
+const debug = require('debug')('util.toolbox.test');
+
 import test from 'ava';
 import * as path from 'path';
+import {regexUUID} from 'util.constants';
 import {
 	call,
 	callSync,
@@ -13,15 +16,9 @@ import {
 	isDarwin,
 	isLinux,
 	isWin,
-	join,
 	nil,
 	nilEvent,
-	regexEmail,
-	regexIndexOf,
-	regexURL,
-	regexUUID,
 	sanitize,
-	sp,
 	success
 } from '../index';
 
@@ -37,6 +34,8 @@ test('Executing output function test on string', t => {
 	const data: string = 'test1\r\ntest2\r\ntest3\n';
 	const out = sanitize(data, true);
 
+	debug(out);
+
 	t.truthy(out instanceof Array);
 	t.is(out.length, 3);
 	t.is(out[0], 'test1');
@@ -48,6 +47,8 @@ test('Executing output function test on buffer', t => {
 	const data: Buffer = new Buffer('test1\r\ntest2\r\ntest3\n');
 	const out = sanitize(data);
 
+	debug(out);
+
 	t.truthy(out instanceof Array);
 	t.is(out.length, 3);
 	t.is(out[0], 'test1');
@@ -58,6 +59,8 @@ test('Executing output function test on buffer', t => {
 test('Executing output function test on string with multiple newlines', t => {
 	const data: string = 'test1\r\n\ntest2\n\n\n\r\ntest3\n\n\n';
 	const out = sanitize(data);
+
+	debug(out);
 
 	t.truthy(out instanceof Array);
 	t.is(out.length, 9);
@@ -209,7 +212,6 @@ test('Test retrieval from a path with no directories within it (negative test)',
 });
 
 test('Test UUID retrieval function', t => {
-
 	// Test with dashes
 	let testUUID = getUUID();
 	t.truthy(testUUID);
@@ -223,50 +225,6 @@ test('Test UUID retrieval function', t => {
 	t.true(typeof testUUID === 'string');
 	t.is(testUUID.length, 32);
 	t.regex(testUUID, /.{32}/);
-});
-
-test('Test Email regex string', t => {
-	const addrs: string[] = [
-		'email@example.com',
-		'firstname.lastname@example.com',
-		'email@subdomain.example.com',
-		'firstname+lastname@example.com',
-		'email@123.123.123.123',
-		'1234567890@example.com',
-		'email@example-one.com',
-		'email@example.name',
-		'email@example.museum',
-		'email@example.co.jp',
-		'firstname-lastname@example.com'
-	];
-
-	t.truthy(regexEmail);
-
-	for (const addr of addrs) {
-		t.regex(addr, regexEmail);
-	}
-});
-
-test('Test URL regex string', t => {
-	const urls: string[] = [
-		'http://example.com',
-		'http://google.com',
-		'http://something.org'
-	];
-
-	t.truthy(regexURL);
-
-	for (const url of urls) {
-		t.regex(url, regexURL);
-	}
-});
-
-test('Test join function to combine a set into a string', t => {
-	const x: Set<string> = new Set<string>(['a', 'b', 'c']);
-
-	t.is(join(x), 'abc');
-	t.is(join(x, ' '), 'a b c');
-	t.is(join(x, '@'), 'a@b@c');
 });
 
 test('Test generating random integers', t => {
@@ -285,25 +243,4 @@ test('Test generating random integers with inclusive max', t => {
 		const val = getRandomIntInclusive(1, 6);
 		t.true(val >= 1 && val <= 6);
 	}
-});
-
-test('Test searching for index in string using regex', t => {
-
-	t.is(regexIndexOf('abcdefghijk', /a/), 0);
-	t.is(regexIndexOf('abcdefghijk', /k/), 10);
-	t.is(regexIndexOf('abcdefghijk', /def/), 3);
-	t.is(regexIndexOf('123abcdefghijklmnop', /[a-zA-Z]/), 3);
-
-	// not found
-	t.is(regexIndexOf('abcdefghijk', /[0-9]/), -1);
-
-	// finds the second set of 'aaa', but contains abs index
-	t.is(regexIndexOf('aaabbbcccaaa', /aaa/, 3), 9);
-});
-
-test('Test creating a string with non-breaking space (sp)', t => {
-	const spaces: string = sp + sp + sp;
-
-	t.truthy(spaces);
-	t.is(spaces.length, 3);
 });

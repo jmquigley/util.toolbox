@@ -32,13 +32,6 @@ for cryptography.</p>
 <dt><a href="#getUUID">getUUID(nodash)</a> ⇒ <code>string</code></dt>
 <dd><p>Retrieves a version 4 uuid.  It can be with or without the dash characters.</p>
 </dd>
-<dt><a href="#join">join(obj)</a> ⇒ <code>string</code></dt>
-<dd><p>Takes a Set of strings and converts it to a string that is joined by a
-delimiter.</p>
-</dd>
-<dt><a href="#regexIndexOf">regexIndexOf(text, re, i)</a> ⇒ <code>number</code></dt>
-<dd><p>Searches for the first location (index) within a given string using a regex</p>
-</dd>
 <dt><a href="#sanitize">sanitize(buffer, verbose, log)</a></dt>
 <dd><p>Takes a data buffer of output bytes, converts it to a string and then splits
 it on newlines for output.  By default it is just saved into a sanitized
@@ -139,34 +132,6 @@ Retrieves a version 4 uuid.  It can be with or without the dash characters.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | nodash | <code>boolean</code> | <code>false</code> | if true, the dashes are removed, otherwise just a v4 uuid is created. |
-
-<a name="join"></a>
-
-## join(obj) ⇒ <code>string</code>
-Takes a Set of strings and converts it to a string that is joined by a
-delimiter.
-
-**Kind**: global function  
-**Returns**: <code>string</code> - a new string  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| obj | <code>Set.&lt;string&gt;</code> | the set of strings that will be joined together |
-
-<a name="regexIndexOf"></a>
-
-## regexIndexOf(text, re, i) ⇒ <code>number</code>
-Searches for the first location (index) within a given string using a regex
-
-**Kind**: global function  
-**Returns**: <code>number</code> - the index value location where the regex match was found
-If it is not found, then -1 is returned.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| text | <code>string</code> | the string to search within |
-| re | <code>RegExp</code> | the regex object to search with |
-| i | <code>number</code> | a starting index value |
 
 <a name="sanitize"></a>
 

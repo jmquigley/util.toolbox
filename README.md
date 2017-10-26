@@ -26,10 +26,8 @@ The toolbox contains the following functions:
 - [getRandomInt](docs/index.md#getRandomInt)
 - [getRandomIntInclusive](docs/index.md#getRandomIntInclusive)
 - [getUUID](docs/index.md#getUUID)
-- [join](docs/index.md#join)
 - [nil](docs/index.md#nil)
 - [nilEvent](docs/index.md#nilEvent)
-- [regexIndexOf](docs/index.md#regexIndexOf)
 - [sanitize](docs/index.md#sanitize)
 
 It contains the following exposed variables:
@@ -38,15 +36,6 @@ It contains the following exposed variables:
 - `isLinux` -- true if the operating system is Linux, otherwise false.
 - `isMac` -- true if the operating system is OSX, otherwise false.
 - `isWin` -- true if the operating system is windows, otherwise false.
-
 - `encoding` -- default encoding string of 'utf-8'
 - `failure` -- the number 127 for a failed operation
-- `nl` -- Unix newline character string '\n'
-- `sp` -- zero width non breaking space character (unicode u+200b)
 - `success` -- the number 0 for a successful operation
-
-It also contains the following regex strings:
-
-- `regexEmail` - matches [99.99% of all email](http://www.regular-expressions.info/email.html) addresses in use today
-- `regexURL` - matches a [Uniform Resource Locator (URL)](https://en.wikipedia.org/wiki/URL)
-- `regexUUID` - matches a [universally unique id (UUID)](https://en.wikipedia.org/wiki/Universally_unique_identifier)

@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "fs-extra": "^4.0.2",
+    "util.constants": "^0.0.1",
     "util.pkgwrap": "0.0.72",
     "util.rstrip": "0.0.26",
     "uuid": "^3.1.0"

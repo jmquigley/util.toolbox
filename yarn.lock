@@ -3892,6 +3892,12 @@ util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
 
+util.constants@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/util.constants/-/util.constants-0.0.1.tgz#efe3ec0c188d8dea0d75bcf0c44813e8ef7d0a3c"
+  dependencies:
+    util.pkgwrap "0.0.72"
+
 util.pkgwrap@0.0.68:
   version "0.0.68"
   resolved "https://registry.yarnpkg.com/util.pkgwrap/-/util.pkgwrap-0.0.68.tgz#e258de014366ed04ee488072afcf1c0ccd5777d4"
