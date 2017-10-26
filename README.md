@@ -39,8 +39,11 @@ It contains the following exposed variables:
 - `isMac` -- true if the operating system is OSX, otherwise false.
 - `isWin` -- true if the operating system is windows, otherwise false.
 
-- `success` -- the number 0 for a successful operation
+- `encoding` -- default encoding string of 'utf-8'
 - `failure` -- the number 127 for a failed operation
+- `nl` -- Unix newline character string '\n'
+- `sp` -- zero width non breaking space character (unicode u+200b)
+- `success` -- the number 0 for a successful operation
 
 It also contains the following regex strings:
 
