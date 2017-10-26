@@ -11,6 +11,7 @@ export const encoding: string = 'utf-8';
 export const success: number = 0;
 export const failure: number = 127;
 export const nl: string = '\n';
+export const sp: string = '\u200b';  // zero width, non breaking space
 
 export const isDarwin = /^darwin/.test(process.platform);
 export const isLinux = /^linux/.test(process.platform);

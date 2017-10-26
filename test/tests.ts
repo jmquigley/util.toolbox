@@ -21,6 +21,7 @@ import {
 	regexURL,
 	regexUUID,
 	sanitize,
+	sp,
 	success
 } from '../index';
 
@@ -298,4 +299,11 @@ test('Test searching for index in string using regex', t => {
 
 	// finds the second set of 'aaa', but contains abs index
 	t.is(regexIndexOf('aaabbbcccaaa', /aaa/, 3), 9);
+});
+
+test('Test creating a string with non-breaking space (sp)', t => {
+	const spaces: string = sp + sp + sp;
+
+	t.truthy(spaces);
+	t.is(spaces.length, 3);
 });
