@@ -30,8 +30,8 @@ export interface ICallOpts {
 export type INilCallback = (err?: Error, val?: any) => void;
 
 export let nil: INilCallback = (err?: Error, val?: any): void => {
-	err = null;
-	val = null;
+	err = err;
+	val = val;
 };
 
 /**
