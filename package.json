@@ -3,6 +3,8 @@
   "version": "0.0.53",
   "author": "jmquigley <jmquigley@outlook.com>",
   "description": "A set of functions used for build and testing across projects",
+  "main": "./index.js",
+  "types": "./index.d.ts",
   "private": false,
   "license": "MIT",
   "repository": {
@@ -13,36 +15,22 @@
     "url": "https://github.com/jmquigley/util.toolbox/issues"
   },
   "engines": {
-    "node": ">=7.5"
+    "node": ">=7.x"
   },
   "dependencies": {
     "fs-extra": "^4.0.2",
-    "util.constants": "^0.0.3",
-    "util.pkgwrap": "0.0.73",
-    "util.rstrip": "0.0.28",
+    "util.constants": "^0.0.5",
+    "util.rstrip": "0.0.30",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^4.0.5",
     "@types/node": "^8.0.53",
-    "ava": "^0.23.0",
+    "ava": "^0.24.0",
     "coveralls": "^3.0.0",
     "nyc": "^11.3.0",
     "tslint": "^5.8.0",
-    "typescript": "^2.6.1"
-  },
-  "main": "./index.js",
-  "types": "./index.d.ts",
-  "scripts": {
-    "all": "yarn install && yarn run clean && yarn run lint && yarn run build && yarn test && yarn run docs && yarn run report",
-    "build": "pkgwrap --build",
-    "clean": "pkgwrap --clean",
-    "coverage": "pkgwrap --coverage",
-    "docs": "pkgwrap --docs",
-    "lint": "pkgwrap --lint",
-    "postinstall": "pkgwrap --postinstall",
-    "report": "pkgwrap --reporting",
-    "test": "pkgwrap --testing --ava"
+    "typescript": "^2.6.2"
   },
   "pkgwrap": {
     "cleanup": [
@@ -54,5 +42,17 @@
       "./test/helpers/index.d.ts",
       "./test/helpers/index.js"
     ]
+  },
+  "scripts": {
+    "all": "yarn install && yarn run build && yarn test && yarn run docs && yarn run report",
+    "build": "yarn run clean && yarn run lint && pkgwrap --build",
+    "clean": "pkgwrap --clean",
+    "coverage": "pkgwrap --coverage",
+    "docs": "pkgwrap --docs",
+    "lint": "pkgwrap --lint",
+    "preinstall": "yarn global add util.pkgwrap",
+		"prepublishOnly": "yarn run all",
+    "report": "pkgwrap --reporting",
+    "test": "pkgwrap --testing --ava"
   }
 }
