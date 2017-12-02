@@ -3228,13 +3228,13 @@ util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
 
-util.constants@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/util.constants/-/util.constants-0.0.5.tgz#ad910af30b50b95e93e83e15bba0ba4c0a6fb050"
+util.constants@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/util.constants/-/util.constants-0.0.6.tgz#0d38eb97e9f4f6b1472e767b6dcce5f94987ecdf"
 
-util.rstrip@0.0.30:
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/util.rstrip/-/util.rstrip-0.0.30.tgz#5777b7bcca6b9c0e0e2cd808e3610aecbcdf4d06"
+util.rstrip@0.0.31:
+  version "0.0.31"
+  resolved "https://registry.yarnpkg.com/util.rstrip/-/util.rstrip-0.0.31.tgz#4e5006667467f4c6da239272385ab130083e420a"
 
 uuid@^3.0.0, uuid@^3.1.0:
   version "3.1.0"

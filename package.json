@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "fs-extra": "^4.0.2",
-    "util.constants": "^0.0.5",
-    "util.rstrip": "0.0.30",
+    "util.constants": "^0.0.6",
+    "util.rstrip": "0.0.31",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
