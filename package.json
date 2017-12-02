@@ -1,6 +1,6 @@
 {
   "name": "util.toolbox",
-  "version": "0.0.54",
+  "version": "0.0.55",
   "author": "jmquigley <jmquigley@outlook.com>",
   "description": "A set of functions used for build and testing across projects",
   "main": "./index.js",
