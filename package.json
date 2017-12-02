@@ -1,6 +1,6 @@
 {
   "name": "util.toolbox",
-  "version": "0.0.53",
+  "version": "0.0.54",
   "author": "jmquigley <jmquigley@outlook.com>",
   "description": "A set of functions used for build and testing across projects",
   "main": "./index.js",
@@ -51,7 +51,7 @@
     "docs": "pkgwrap --docs",
     "lint": "pkgwrap --lint",
     "preinstall": "yarn global add util.pkgwrap",
-		"prepublishOnly": "yarn run all",
+    "prepublishOnly": "yarn run all",
     "report": "pkgwrap --reporting",
     "test": "pkgwrap --testing --ava"
   }
