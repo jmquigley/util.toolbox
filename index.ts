@@ -156,6 +156,20 @@ export function callSync(cmd: string | Buffer | string[], opts: any = null): num
 }
 
 /**
+ * Takes an array of numbers and finds the closest value to the given
+ * input number.
+ *
+ * Inspired by https://github.com/andreruffert/closest-number
+ *
+ * @param arr {number[]} array of numbers to search
+ * @param num {number} the number value used as a reference to find
+ * @returns {number} the number from arr that is closest to num
+ */
+export function closestNumber(arr: number[], num: number) {
+	return arr.reduce((prev, curr) => (Math.abs(curr - num) < Math.abs(prev - num)) ? curr : prev);
+}
+
+/**
  * Retrieves a list of directories from the given input path.
  * @param src {string} the source directory to search for sub directories
  * @returns {Array} a list of directories.

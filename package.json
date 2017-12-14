@@ -18,14 +18,14 @@
     "node": ">=7.x"
   },
   "dependencies": {
-    "fs-extra": "^4.0.2",
-    "util.constants": "^0.0.7",
+    "fs-extra": "^5.0.0",
+    "util.constants": "^0.0.8",
     "util.rstrip": "0.0.32",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
-    "@types/fs-extra": "^4.0.5",
-    "@types/node": "^8.0.54",
+    "@types/fs-extra": "^5.0.0",
+    "@types/node": "^8.5.1",
     "ava": "^0.24.0",
     "coveralls": "^3.0.0",
     "nyc": "^11.3.0",
@@ -45,7 +45,7 @@
     ]
   },
   "scripts": {
-    "all": "yarn install && yarn run build && yarn test && yarn run docs && yarn run report",
+    "all": "yarn install && yarn run build && yarn run docs && yarn test && yarn run report",
     "build": "yarn run clean && yarn run lint && pkgwrap --build",
     "clean": "pkgwrap --clean",
     "coverage": "pkgwrap --coverage",

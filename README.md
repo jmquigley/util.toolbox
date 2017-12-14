@@ -22,6 +22,7 @@ The toolbox contains the following functions:
 
 - [call](docs/index.md#call)
 - [callSync](docs/index.md#callSync)
+- [closestNumber](docs/index.md#closestNumber)
 - [getDirectories](docs/index.md#getDirectories)
 - [getRandomInt](docs/index.md#getRandomInt)
 - [getRandomIntInclusive](docs/index.md#getRandomIntInclusive)

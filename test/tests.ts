@@ -8,6 +8,7 @@ import {regexUUID} from 'util.constants';
 import {
 	call,
 	callSync,
+	closestNumber,
 	failure,
 	getDirectories,
 	getRandomInt,
@@ -243,4 +244,19 @@ test('Test generating random integers with inclusive max', t => {
 		const val = getRandomIntInclusive(1, 6);
 		t.true(val >= 1 && val <= 6);
 	}
+});
+
+test('Test basic numbers', t => {
+	const numbers = [10, 20, 30];
+	t.is(closestNumber(numbers, 12), 10);
+});
+
+test('Test floating point numbers', t => {
+	const numbers = [10.1, 10.5, 10.4, 8.20, 9.23, 10];
+	t.is(closestNumber(numbers, 10.2), 10.1);
+});
+
+test('Test negative numbers', t => {
+	const numbers = [2, 0, -1.5, -0.75, -5, 3, -1.2, -2.1];
+	t.is(closestNumber(numbers, -1), -1.2);
 });

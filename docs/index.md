@@ -14,6 +14,11 @@ to use powershell.  The shell can be overriden with the opts argument.</p>
 This is a wrapper for the call function to wait for the command to
 finish.  When the call is finished a callback is executed.</p>
 </dd>
+<dt><a href="#closestNumber">closestNumber(arr, num)</a> ⇒ <code>number</code></dt>
+<dd><p>Takes an array of numbers and finds the closest value to the given
+input number.</p>
+<p>Inspired by <a href="https://github.com/andreruffert/closest-number">https://github.com/andreruffert/closest-number</a></p>
+</dd>
 <dt><a href="#getDirectories">getDirectories(src)</a> ⇒ <code>Array</code></dt>
 <dd><p>Retrieves a list of directories from the given input path.</p>
 </dd>
@@ -74,6 +79,22 @@ finish.  When the call is finished a callback is executed.
 | cmd | <code>string</code> |  | the command to execute on the command line |
 | [opts] | <code>ICallOpts</code> | <code></code> | optional arguments to the call |
 | [cb] | <code>function</code> |  | the callback function to execute when the command finishes. |
+
+<a name="closestNumber"></a>
+
+## closestNumber(arr, num) ⇒ <code>number</code>
+Takes an array of numbers and finds the closest value to the given
+input number.
+
+Inspired by https://github.com/andreruffert/closest-number
+
+**Kind**: global function  
+**Returns**: <code>number</code> - the number from arr that is closest to num  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| arr | <code>Array.&lt;number&gt;</code> | array of numbers to search |
+| num | <code>number</code> | the number value used as a reference to find |
 
 <a name="getDirectories"></a>
 
