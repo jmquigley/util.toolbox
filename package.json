@@ -19,19 +19,19 @@
   },
   "dependencies": {
     "fs-extra": "^5.0.0",
-    "util.constants": "^0.0.8",
-    "util.rstrip": "0.0.32",
-    "uuid": "^3.1.0"
+    "util.constants": "^0.0.9",
+    "util.rstrip": "0.0.34",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
-    "@types/fs-extra": "^5.0.0",
-    "@types/node": "^8.5.1",
-    "ava": "^0.24.0",
+    "@types/fs-extra": "^5.0.2",
+    "@types/node": "^9.6.5",
+    "ava": "^0.25.0",
     "coveralls": "^3.0.0",
-    "nyc": "^11.3.0",
-    "tslint": "^5.8.0",
-    "typescript": "^2.6.2",
-    "util.pkgwrap": "^0.0.88"
+    "nyc": "^11.7.1",
+    "tslint": "^5.9.1",
+    "typescript": "^2.8.1",
+    "util.pkgwrap": "^0.0.90"
   },
   "pkgwrap": {
     "cleanup": [
