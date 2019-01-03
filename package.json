@@ -1,6 +1,6 @@
 {
   "name": "util.toolbox",
-  "version": "0.0.59",
+  "version": "0.0.60",
   "author": "jmquigley <jmquigley@outlook.com>",
   "description": "A set of functions used for build and testing across projects",
   "main": "./index.js",
@@ -33,23 +33,29 @@
     "util.pkgwrap": "^0.0.94"
   },
   "pkgwrap": {
-		"bail": true,
+    "bail": true,
     "cleanup": [
       "docs",
       "index.d.ts",
       "index.js"
     ]
   },
-	"jest": {
+  "jest": {
     "collectCoverage": true,
     "coveragePathIgnorePatterns": [
       "<rootDir>/node_modules/"
     ],
-    "moduleFileExtensions": ["js", "jsx", "ts", "tsx", "json"],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "ts",
+      "tsx",
+      "json"
+    ],
     "notify": false,
     "testPathIgnorePatterns": [
       "<rootDir>/node_modules/",
-			"__tests__/helpers"
+      "__tests__/helpers"
     ],
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
     "transform": {
