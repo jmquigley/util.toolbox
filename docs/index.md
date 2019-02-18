@@ -61,7 +61,7 @@ When using default BASH options it will invoke as a login shell.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | cmd | <code>string</code> |  | the command to execute on the command line |
-| [opts] | <code>ICallOpts</code> | <code></code> | optional arguments to the call     - `async: boolean`: if true, then the async version is called, otherwise     the call will be synchronous.     - `log: any`: the output logger that will be used with this call.  It     uses a default of the console.log method.     - `verbose: {boolean}`: if true, then output is printed     - `shell: {string}`: the shell that will be invoked with this call.  It     depends on the environment.     - `shellArgs: {string[]}`: the parameters after shell, but before the     given command. |
+| [opts] | <code>CallOpts</code> | <code></code> | optional arguments to the call     - `async: boolean`: if true, then the async version is called, otherwise     the call will be synchronous.     - `log: any`: the output logger that will be used with this call.  It     uses a default of the console.log method.     - `verbose: {boolean}`: if true, then output is printed     - `shell: {string}`: the shell that will be invoked with this call.  It     depends on the environment.     - `shellArgs: {string[]}`: the parameters after shell, but before the     given command. |
 | [cb] | <code>function</code> |  | the callback function to execute when the command finishes. |
 
 <a name="callSync"></a>
@@ -77,7 +77,7 @@ finish.  When the call is finished a callback is executed.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | cmd | <code>string</code> |  | the command to execute on the command line |
-| [opts] | <code>ICallOpts</code> | <code></code> | optional arguments to the call |
+| [opts] | <code>CallOpts</code> | <code></code> | optional arguments to the call |
 | [cb] | <code>function</code> |  | the callback function to execute when the command finishes. |
 
 <a name="closestNumber"></a>

@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
-import * as ps from 'child_process';
-import * as fs from 'fs-extra';
-import * as path from 'path';
-import {rstrip} from 'util.rstrip';
+import * as ps from "child_process";
+import * as fs from "fs-extra";
+import * as path from "path";
+import {rstrip} from "util.rstrip";
 
-const uuid = require('uuid');
+const uuid = require("uuid");
 
-export const encoding: string = 'utf-8';
+export const encoding: string = "utf-8";
 export const success: number = 0;
 export const failure: number = 127;
 
@@ -16,7 +16,7 @@ export const isLinux = /^linux/.test(process.platform);
 export const isMac = /^darwin/.test(process.platform);
 export const isWin = /^win/.test(process.platform);
 
-export interface ICallOpts {
+export interface CallOpts {
 	async?: boolean;
 	log?: any;
 	shell?: string;
@@ -27,9 +27,9 @@ export interface ICallOpts {
 /**
  * A function that does nothing.  Use it as an empty callback initializer.
  */
-export type INilCallback = (err?: Error, val?: any) => void;
+export type NilCallback = (err?: Error, val?: any) => void;
 
-export let nil: INilCallback = (err?: Error, val?: any): void => {
+export let nil: NilCallback = (err?: Error, val?: any): void => {
 	err = err;
 	val = val;
 };
@@ -40,8 +40,7 @@ export let nil: INilCallback = (err?: Error, val?: any): void => {
  */
 export type INilEventCallback = () => void;
 
-export let nilEvent: INilEventCallback = (): void => {
-};
+export let nilEvent: INilEventCallback = (): void => {};
 
 /**
  * Performs an asynchronous command line call to run a given user command.
@@ -53,7 +52,7 @@ export let nilEvent: INilEventCallback = (): void => {
  * When using default BASH options it will invoke as a login shell.
  *
  * @param cmd {string} the command to execute on the command line
- * @param [opts] {ICallOpts} optional arguments to the call
+ * @param [opts] {CallOpts} optional arguments to the call
  *
  *     - `async: boolean`: if true, then the async version is called, otherwise
  *     the call will be synchronous.
@@ -68,49 +67,59 @@ export let nilEvent: INilEventCallback = (): void => {
  * @param [cb] {Function} the callback function to execute when the command
  * finishes.
  */
-export function call(cmd: string | Buffer | string[], opts: any = null, cb = nil) {
-	if (typeof opts === 'function') {
+export function call(
+	cmd: string | Buffer | string[],
+	opts: CallOpts = null,
+	cb = nil
+) {
+	if (typeof opts === "function") {
 		cb = opts;
 		opts = null;
 	}
 
 	if (cmd == null) {
-		return cb(new Error('No command given to execute in call'), failure);
+		return cb(new Error("No command given to execute in call"), failure);
 	}
 
 	if (cmd instanceof Buffer) {
 		cmd = cmd.toString();
 	} else if (cmd instanceof Array) {
-		cmd = cmd.join(' ');
+		cmd = cmd.join(" ");
 	}
 
-	opts = Object.assign({
-		async: true,
-		log: console.log,
-		verbose: true,
-		shell: (isWin) ? 'powershell' : '/bin/bash',
-		shellArgs: (isWin) ? ['', cmd] : ['-l', '-c', cmd]
-	}, opts);
+	opts = Object.assign(
+		{
+			async: true,
+			log: console.log,
+			verbose: true,
+			shell: isWin ? "powershell" : "/bin/bash",
+			shellArgs: isWin ? ["", cmd] : ["-l", "-c", cmd]
+		},
+		opts
+	);
 
 	if (opts.verbose) {
-		opts.log(`$ ${opts.shell} ${opts.shellArgs.join(' ')}`);
+		opts.log(`$ ${opts.shell} ${opts.shellArgs.join(" ")}`);
 	}
 
 	if (opts.async) {
 		const out = ps.execFile(opts.shell, opts.shellArgs);
 
-		out.stdout.on('data', (data: string | Buffer) => {
+		out.stdout.on("data", (data: string | Buffer) => {
 			sanitize(data, opts.verbose);
 			return out;
 		});
 
-		out.stderr.on('data', (data: string | Buffer) => {
+		out.stderr.on("data", (data: string | Buffer) => {
 			sanitize(data, opts.verbose, console.error);
 		});
 
-		out.on('close', (code: number) => {
+		out.on("close", (code: number) => {
 			if (code !== success) {
-				return cb(new Error(`Error executing command: ${cmd} (${code})`), code);
+				return cb(
+					new Error(`Error executing command: ${cmd} (${code})`),
+					code
+				);
 			}
 
 			return cb(null, code);
@@ -132,18 +141,24 @@ export function call(cmd: string | Buffer | string[], opts: any = null, cb = nil
  * finish.  When the call is finished a callback is executed.
  *
  * @param cmd {string} the command to execute on the command line
- * @param [opts] {ICallOpts} optional arguments to the call
+ * @param [opts] {CallOpts} optional arguments to the call
  * @param [cb] {Function} the callback function to execute when the command
  * finishes.
  * @returns {number} returns 0 if the command was successful, otherwise 127.
  */
-export function callSync(cmd: string | Buffer | string[], opts: any = null): number {
+export function callSync(
+	cmd: string | Buffer | string[],
+	opts: CallOpts = null
+): number {
 	let rc: number = success;
 
-	opts = Object.assign({
-		async: false,
-		log: console.log
-	}, opts);
+	opts = Object.assign(
+		{
+			async: false,
+			log: console.log
+		},
+		opts
+	);
 
 	call(cmd, opts, (err, code) => {
 		if (err) {
@@ -166,7 +181,9 @@ export function callSync(cmd: string | Buffer | string[], opts: any = null): num
  * @returns {number} the number from arr that is closest to num
  */
 export function closestNumber(arr: number[], num: number) {
-	return arr.reduce((prev, curr) => (Math.abs(curr - num) < Math.abs(prev - num)) ? curr : prev);
+	return arr.reduce((prev, curr) =>
+		Math.abs(curr - num) < Math.abs(prev - num) ? curr : prev
+	);
 }
 
 /**
@@ -175,8 +192,11 @@ export function closestNumber(arr: number[], num: number) {
  * @returns {Array} a list of directories.
  */
 export function getDirectories(src: string): string[] {
-	return fs.readdirSync(src)
-		.filter((file: string) => fs.statSync(path.join(src, file)).isDirectory());
+	return fs
+		.readdirSync(src)
+		.filter((file: string) =>
+			fs.statSync(path.join(src, file)).isDirectory()
+		);
 }
 
 /**
@@ -223,7 +243,7 @@ export function getRandomIntInclusive(min: number, max: number): number {
  */
 export function getUUID(nodash = false): string {
 	if (nodash) {
-		return uuid.v4().replace(/-/g, '');
+		return uuid.v4().replace(/-/g, "");
 	}
 
 	return uuid.v4();
@@ -241,8 +261,16 @@ export function getUUID(nodash = false): string {
  * @retuns {string[]} an array of string that represent the lines given with
  * the input buffer.
  */
-export function sanitize(buffer: string | Buffer, verbose: boolean = false, log = console.log) {
-	if (buffer == null && typeof buffer !== 'string' && !(buffer instanceof Buffer)) {
+export function sanitize(
+	buffer: string | Buffer,
+	verbose: boolean = false,
+	log = console.log
+) {
+	if (
+		buffer == null &&
+		typeof buffer !== "string" &&
+		!(buffer instanceof Buffer)
+	) {
 		return [];
 	}
 
