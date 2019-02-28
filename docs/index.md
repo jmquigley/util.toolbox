@@ -57,12 +57,22 @@ to use powershell.  The shell can be overriden with the opts argument.
 When using default BASH options it will invoke as a login shell.
 
 **Kind**: global function  
+**Params**
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| cmd | <code>string</code> |  | the command to execute on the command line |
-| [opts] | <code>CallOpts</code> | <code></code> | optional arguments to the call     - `async: boolean`: if true, then the async version is called, otherwise     the call will be synchronous.     - `log: any`: the output logger that will be used with this call.  It     uses a default of the console.log method.     - `verbose: {boolean}`: if true, then output is printed     - `shell: {string}`: the shell that will be invoked with this call.  It     depends on the environment.     - `shellArgs: {string[]}`: the parameters after shell, but before the     given command. |
-| [cb] | <code>function</code> |  | the callback function to execute when the command finishes. |
+- cmd <code>string</code> - the command to execute on the command line
+- [opts] <code>CallOpts</code> <code> = </code> - optional arguments to the call
+
+    - `async: boolean`: if true, then the async version is called, otherwise
+    the call will be synchronous.
+    - `log: any`: the output logger that will be used with this call.  It
+    uses a default of the console.log method.
+    - `verbose: {boolean}`: if true, then output is printed
+    - `shell: {string}`: the shell that will be invoked with this call.  It
+    depends on the environment.
+    - `shellArgs: {string[]}`: the parameters after shell, but before the
+    given command.
+- [cb] <code>function</code> - the callback function to execute when the command
+finishes.
 
 <a name="callSync"></a>
 
@@ -73,12 +83,12 @@ finish.  When the call is finished a callback is executed.
 
 **Kind**: global function  
 **Returns**: <code>number</code> - returns 0 if the command was successful, otherwise 127.  
+**Params**
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| cmd | <code>string</code> |  | the command to execute on the command line |
-| [opts] | <code>CallOpts</code> | <code></code> | optional arguments to the call |
-| [cb] | <code>function</code> |  | the callback function to execute when the command finishes. |
+- cmd <code>string</code> - the command to execute on the command line
+- [opts] <code>CallOpts</code> <code> = </code> - optional arguments to the call
+- [cb] <code>function</code> - the callback function to execute when the command
+finishes.
 
 <a name="closestNumber"></a>
 
@@ -90,11 +100,10 @@ Inspired by https://github.com/andreruffert/closest-number
 
 **Kind**: global function  
 **Returns**: <code>number</code> - the number from arr that is closest to num  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| arr | <code>Array.&lt;number&gt;</code> | array of numbers to search |
-| num | <code>number</code> | the number value used as a reference to find |
+- arr <code>Array.&lt;number&gt;</code> - array of numbers to search
+- num <code>number</code> - the number value used as a reference to find
 
 <a name="getDirectories"></a>
 
@@ -103,10 +112,9 @@ Retrieves a list of directories from the given input path.
 
 **Kind**: global function  
 **Returns**: <code>Array</code> - a list of directories.  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| src | <code>string</code> | the source directory to search for sub directories |
+- src <code>string</code> - the source directory to search for sub directories
 
 <a name="getRandomInt"></a>
 
@@ -119,11 +127,10 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 **Kind**: global function  
 **Returns**: <code>number</code> - a pseudo random number  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| min | <code>number</code> | the smallest integer to use, inclusive |
-| max | <code>number</code> | the largest integer to use, non inclusive |
+- min <code>number</code> - the smallest integer to use, inclusive
+- max <code>number</code> - the largest integer to use, non inclusive
 
 <a name="getRandomIntInclusive"></a>
 
@@ -136,11 +143,10 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 **Kind**: global function  
 **Returns**: <code>number</code> - a pseudo random number  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| min | <code>number</code> | the smallest integer to use, inclusive |
-| max | <code>number</code> | the largest integer to use, inclusive |
+- min <code>number</code> - the smallest integer to use, inclusive
+- max <code>number</code> - the largest integer to use, inclusive
 
 <a name="getUUID"></a>
 
@@ -149,10 +155,10 @@ Retrieves a version 4 uuid.  It can be with or without the dash characters.
 
 **Kind**: global function  
 **Returns**: <code>string</code> - a v4 uuid  
+**Params**
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| nodash | <code>boolean</code> | <code>false</code> | if true, the dashes are removed, otherwise just a v4 uuid is created. |
+- nodash <code>boolean</code> <code> = false</code> - if true, the dashes are removed, otherwise just a
+v4 uuid is created.
 
 <a name="sanitize"></a>
 
@@ -165,10 +171,10 @@ line by line.
 **Kind**: global function  
 **Retuns**: <code>string[]</code> an array of string that represent the lines given with
 the input buffer.  
+**Params**
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| buffer | <code>string</code> |  | the output bytes to convert and print to log. |
-| verbose | <code>boolean</code> | <code>false</code> | if true, then the sanitized output is sent to the console. |
-| log | <code>console.log</code> |  | the output logger to write the output when verbose. |
+- buffer <code>string</code> - the output bytes to convert and print to log.
+- verbose <code>boolean</code> <code> = false</code> - if true, then the sanitized output is sent to
+the console.
+- log <code>console.log</code> - the output logger to write the output when verbose.
 
