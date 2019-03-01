@@ -1,6 +1,6 @@
 # util.toolbox
 
-> A set of utility functions used for build and testing across projects.
+> A set of utility functions used for build and testing across web projects.
 
 [![build](https://travis-ci.org/jmquigley/util.toolbox.svg?branch=master)](https://travis-ci.org/jmquigley/util.toolbox)
 [![analysis](https://img.shields.io/badge/analysis-tslint-9cf.svg)](https://palantir.github.io/tslint/)
@@ -28,10 +28,7 @@ $ yarn run all
 
 The toolbox contains the following functions:
 
-- [call](docs/index.md#call)
-- [callSync](docs/index.md#callSync)
 - [closestNumber](docs/index.md#closestNumber)
-- [getDirectories](docs/index.md#getDirectories)
 - [getRandomInt](docs/index.md#getRandomInt)
 - [getRandomIntInclusive](docs/index.md#getRandomIntInclusive)
 - [getUUID](docs/index.md#getUUID)
