@@ -1,6 +1,6 @@
 {
 	"name": "util.toolbox",
-	"version": "0.0.74",
+	"version": "0.0.75",
 	"author": "jmquigley <jmquigley@outlook.com>",
 	"description": "A set of functions used for build and testing across projects",
 	"private": false,
@@ -23,37 +23,38 @@
 		"index.d.ts"
 	],
 	"dependencies": {
-		"util.constants": "^0.0.25",
+		"util.constants": "^0.0.26",
 		"util.rstrip": "0.0.53",
 		"uuid": "^3.3.2"
 	},
 	"devDependencies": {
-		"@babel/cli": "^7.2.3",
-		"@babel/core": "^7.3.4",
+		"@babel/cli": "^7.4.3",
+		"@babel/core": "^7.4.3",
 		"@babel/plugin-transform-modules-umd": "^7.2.0",
-		"@babel/preset-env": "^7.3.4",
+		"@babel/preset-env": "^7.4.3",
 		"@babel/preset-typescript": "^7.3.3",
-		"@babel/runtime": "^7.3.4",
+		"@babel/runtime": "^7.4.3",
 		"@types/jest": "^24.0.11",
-		"@types/node": "^11.11.1",
+		"@types/node": "^11.13.2",
 		"babel-minify": "^0.5.0",
 		"babel-preset-minify": "^0.5.0",
 		"coveralls": "^3.0.3",
-		"jest": "^24.4.0",
+		"jest": "^24.7.1",
 		"prettier": "^1.16.4",
-		"tslint": "^5.13.1",
+		"tslint": "^5.15.0",
 		"tslint-config-prettier": "^1.18.0",
-		"typescript": "^3.3.3333",
-		"util.pkgwrap": "^0.0.105"
+		"typescript": "^3.4.3",
+		"util.pkgwrap": "^0.0.112"
 	},
 	"pkgwrap": {
 		"cleanup": [
-			"docs/"
+			"docs/",
+			"tsconfig.tsbuildinfo"
 		]
 	},
 	"scripts": {
 		"all": "yarn install && yarn build && yarn docs && yarn test && yarn manifest",
-		"build": "yarn clean && yarn lint && yarn prettier && yarn build:es && yarn build:umd",
+		"build": "yarn lint && yarn prettier && yarn build:es && yarn build:umd",
 		"build:es": "tsc -p . && minify index.js --out-file index.es.min.js",
 		"build:umd": "babel index.js --out-file index.umd.min.js",
 		"clean": "pkgwrap --clean",

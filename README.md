@@ -41,6 +41,7 @@ It contains the following exposed variables:
 - `isDarwin` -- true if the operating system is OSX, otherwise false (same as `isMac`)
 - `isLinux` -- true if the operating system is Linux, otherwise false.
 - `isMac` -- true if the operating system is OSX, otherwise false.
+- `isNodeJS` -- true if the runtime environement is NodeJS, otherwise false
 - `isWin` -- true if the operating system is windows, otherwise false.
 - `encoding` -- default encoding string of 'utf-8'
 - `failure` -- the number 127 for a failed operation

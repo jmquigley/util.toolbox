@@ -14,6 +14,7 @@ import {
 	getUUID,
 	isDarwin,
 	isLinux,
+	isNodeJS,
 	isWin,
 	nil,
 	nilEvent,
@@ -119,4 +120,8 @@ test("Test floating point numbers", () => {
 test("Test negative numbers", () => {
 	const numbers = [2, 0, -1.5, -0.75, -5, 3, -1.2, -2.1];
 	expect(closestNumber(numbers, -1)).toBe(-1.2);
+});
+
+test("Test if running under a node environemnt", () => {
+	expect(isNodeJS()).toBe(true);
 });

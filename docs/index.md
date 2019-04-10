@@ -21,6 +21,11 @@ for cryptography.</p>
 <dt><a href="#getUUID">getUUID(nodash)</a> ⇒ <code>string</code></dt>
 <dd><p>Retrieves a version 4 uuid.  It can be with or without the dash characters.</p>
 </dd>
+<dt><a href="#isNodeJS">isNodeJS()</a> ⇒</dt>
+<dd><p>Checks the environment to see if it is running under nodejs.  Note that
+this can be unreliable if &quot;process&quot; is globally defined in the
+environment by some other application (i.e. monkeypatching)</p>
+</dd>
 <dt><a href="#sanitize">sanitize(buffer, verbose, log)</a></dt>
 <dd><p>Takes a data buffer of output bytes, converts it to a string and then splits
 it on newlines for output.  By default it is just saved into a sanitized
@@ -88,6 +93,15 @@ Retrieves a version 4 uuid.  It can be with or without the dash characters.
 - nodash <code>boolean</code> <code> = false</code> - if true, the dashes are removed, otherwise just a
 v4 uuid is created.
 
+<a name="isNodeJS"></a>
+
+## isNodeJS() ⇒
+Checks the environment to see if it is running under nodejs.  Note that
+this can be unreliable if "process" is globally defined in the
+environment by some other application (i.e. monkeypatching)
+
+**Kind**: global function  
+**Returns**: true if the environment is running under node, otherwise false  
 <a name="sanitize"></a>
 
 ## sanitize(buffer, verbose, log)

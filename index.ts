@@ -98,6 +98,16 @@ export function getUUID(nodash = false): string {
 }
 
 /**
+ * Checks the environment to see if it is running under nodejs.  Note that
+ * this can be unreliable if "process" is globally defined in the
+ * environment by some other application (i.e. monkeypatching)
+ * @return true if the environment is running under node, otherwise false
+ */
+export function isNodeJS() {
+	return typeof "process" !== "undefined" && process.release.name === "node";
+}
+
+/**
  * Takes a data buffer of output bytes, converts it to a string and then splits
  * it on newlines for output.  By default it is just saved into a sanitized
  * array.  If verbose is set to true, then the buffer it output to the console
