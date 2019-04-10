@@ -98,13 +98,27 @@ export function getUUID(nodash = false): string {
 }
 
 /**
+ * Checks the environment to see if it is running under a browser environment
+ * @return true if the environment is the browser, otherwise false.
+ */
+export function isBrowser() {
+	return (
+		typeof window !== "undefined" && typeof window.document !== "undefined"
+	);
+}
+
+/**
  * Checks the environment to see if it is running under nodejs.  Note that
  * this can be unreliable if "process" is globally defined in the
  * environment by some other application (i.e. monkeypatching)
  * @return true if the environment is running under node, otherwise false
  */
-export function isNodeJS() {
-	return typeof process !== "undefined" && process.release.name === "node";
+export function isNode() {
+	return (
+		typeof process !== "undefined" &&
+		process.versions != null &&
+		process.versions.node != null
+	);
 }
 
 /**

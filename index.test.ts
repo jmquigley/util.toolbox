@@ -12,9 +12,10 @@ import {
 	getRandomInt,
 	getRandomIntInclusive,
 	getUUID,
+	isBrowser,
 	isDarwin,
 	isLinux,
-	isNodeJS,
+	isNode,
 	isWin,
 	nil,
 	nilEvent,
@@ -123,5 +124,9 @@ test("Test negative numbers", () => {
 });
 
 test("Test if running under a node environemnt", () => {
-	expect(isNodeJS()).toBe(true);
+	expect(isNode()).toBe(true);
+});
+
+test("Test if running under a browser environment", () => {
+	expect(isBrowser()).toBe(true);
 });

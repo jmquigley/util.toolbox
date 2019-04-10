@@ -21,7 +21,10 @@ for cryptography.</p>
 <dt><a href="#getUUID">getUUID(nodash)</a> ⇒ <code>string</code></dt>
 <dd><p>Retrieves a version 4 uuid.  It can be with or without the dash characters.</p>
 </dd>
-<dt><a href="#isNodeJS">isNodeJS()</a> ⇒</dt>
+<dt><a href="#isBrowser">isBrowser()</a> ⇒</dt>
+<dd><p>Checks the environment to see if it is running under a browser environment</p>
+</dd>
+<dt><a href="#isNode">isNode()</a> ⇒</dt>
 <dd><p>Checks the environment to see if it is running under nodejs.  Note that
 this can be unreliable if &quot;process&quot; is globally defined in the
 environment by some other application (i.e. monkeypatching)</p>
@@ -93,9 +96,16 @@ Retrieves a version 4 uuid.  It can be with or without the dash characters.
 - nodash <code>boolean</code> <code> = false</code> - if true, the dashes are removed, otherwise just a
 v4 uuid is created.
 
-<a name="isNodeJS"></a>
+<a name="isBrowser"></a>
 
-## isNodeJS() ⇒
+## isBrowser() ⇒
+Checks the environment to see if it is running under a browser environment
+
+**Kind**: global function  
+**Returns**: true if the environment is the browser, otherwise false.  
+<a name="isNode"></a>
+
+## isNode() ⇒
 Checks the environment to see if it is running under nodejs.  Note that
 this can be unreliable if "process" is globally defined in the
 environment by some other application (i.e. monkeypatching)
