@@ -104,7 +104,7 @@ export function getUUID(nodash = false): string {
  * @return true if the environment is running under node, otherwise false
  */
 export function isNodeJS() {
-	return typeof "process" !== "undefined" && process.release.name === "node";
+	return typeof process !== "undefined" && process.release.name === "node";
 }
 
 /**
