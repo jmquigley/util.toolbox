@@ -122,6 +122,17 @@ export function isNode() {
 }
 
 /**
+ * Rounds a number to its nearest prcision
+ * @param n {number} - the number to round
+ * @param precision {number} - the number of decimal places to preserve
+ * @return the newly rounded number
+ */
+export function roundUp(n: number, precision: number = 0) {
+	precision = Math.pow(10, precision);
+	return Math.ceil(n * precision) / precision;
+}
+
+/**
  * Takes a data buffer of output bytes, converts it to a string and then splits
  * it on newlines for output.  By default it is just saved into a sanitized
  * array.  If verbose is set to true, then the buffer it output to the console

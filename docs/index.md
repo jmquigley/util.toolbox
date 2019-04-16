@@ -29,6 +29,9 @@ for cryptography.</p>
 this can be unreliable if &quot;process&quot; is globally defined in the
 environment by some other application (i.e. monkeypatching)</p>
 </dd>
+<dt><a href="#roundUp">roundUp(n, precision)</a> ⇒</dt>
+<dd><p>Rounds a number to its nearest prcision</p>
+</dd>
 <dt><a href="#sanitize">sanitize(buffer, verbose, log)</a></dt>
 <dd><p>Takes a data buffer of output bytes, converts it to a string and then splits
 it on newlines for output.  By default it is just saved into a sanitized
@@ -112,6 +115,18 @@ environment by some other application (i.e. monkeypatching)
 
 **Kind**: global function  
 **Returns**: true if the environment is running under node, otherwise false  
+<a name="roundUp"></a>
+
+## roundUp(n, precision) ⇒
+Rounds a number to its nearest prcision
+
+**Kind**: global function  
+**Returns**: the newly rounded number  
+**Params**
+
+- n <code>number</code> - the number to round
+- precision <code>number</code> <code> = 0</code> - the number of decimal places to preserve
+
 <a name="sanitize"></a>
 
 ## sanitize(buffer, verbose, log)

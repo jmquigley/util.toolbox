@@ -19,6 +19,7 @@ import {
 	isWin,
 	nil,
 	nilEvent,
+	roundUp,
 	sanitize,
 	success
 } from "./index";
@@ -129,4 +130,13 @@ test("Test if running under a node environemnt", () => {
 
 test("Test if running under a browser environment", () => {
 	expect(isBrowser()).toBe(true);
+});
+
+test("Test rounding of numbers", () => {
+	const n: number = 10.234567;
+
+	expect(roundUp(n)).toBe(11);
+	expect(roundUp(n, 0)).toBe(11);
+	expect(roundUp(n, 2)).toBe(10.24);
+	expect(roundUp(n, 3)).toBe(10.235);
 });
