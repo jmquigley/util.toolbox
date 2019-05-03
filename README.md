@@ -34,6 +34,7 @@ The toolbox contains the following functions:
 - [getUUID](docs/index.md#getUUID)
 - [nil](docs/index.md#nil)
 - [nilEvent](docs/index.md#nilEvent)
+- [objHasValue](docs/index.md#objHasValue)
 - [roundUp](docs/index.md#roundUp)
 - [sanitize](docs/index.md#sanitize)
 

@@ -19,6 +19,7 @@ import {
 	isWin,
 	nil,
 	nilEvent,
+	objHasValue,
 	roundUp,
 	sanitize,
 	success
@@ -139,4 +140,21 @@ test("Test rounding of numbers", () => {
 	expect(roundUp(n, 0)).toBe(11);
 	expect(roundUp(n, 2)).toBe(10.24);
 	expect(roundUp(n, 3)).toBe(10.235);
+});
+
+test("Test searching an object for a value (not key)", () => {
+	const obj = {
+		a: "x",
+		b: "y",
+		c: null,
+		d: undefined
+	};
+
+	expect(obj).toBeDefined();
+	expect(objHasValue(obj, "x")).toBe(true); // key: a, true
+	expect(objHasValue(obj, "y")).toBe(true); // key: b, true
+	expect(objHasValue(obj, "z")).toBe(false); // not found, false
+	expect(objHasValue(null, null)).toBe(false); // undefined, false
+	expect(objHasValue(obj, null)).toBe(true); // key: c, true
+	expect(objHasValue(obj, undefined)).toBe(true); // key: d, true
 });

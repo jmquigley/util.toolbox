@@ -29,6 +29,10 @@ for cryptography.</p>
 this can be unreliable if &quot;process&quot; is globally defined in the
 environment by some other application (i.e. monkeypatching)</p>
 </dd>
+<dt><a href="#objHasValue">objHasValue(obj, val)</a> ⇒</dt>
+<dd><p>Searches an objects value list to see if it exists within the object.
+If a key contains that value, then it returns true, otherwise false.</p>
+</dd>
 <dt><a href="#roundUp">roundUp(n, precision)</a> ⇒</dt>
 <dd><p>Rounds a number to its nearest prcision</p>
 </dd>
@@ -96,7 +100,7 @@ Retrieves a version 4 uuid.  It can be with or without the dash characters.
 **Returns**: <code>string</code> - a v4 uuid  
 **Params**
 
-- nodash <code>boolean</code> <code> = false</code> - if true, the dashes are removed, otherwise just a
+- nodash <code>boolean</code> - if true, the dashes are removed, otherwise just a
 v4 uuid is created.
 
 <a name="isBrowser"></a>
@@ -115,6 +119,19 @@ environment by some other application (i.e. monkeypatching)
 
 **Kind**: global function  
 **Returns**: true if the environment is running under node, otherwise false  
+<a name="objHasValue"></a>
+
+## objHasValue(obj, val) ⇒
+Searches an objects value list to see if it exists within the object.
+If a key contains that value, then it returns true, otherwise false.
+
+**Kind**: global function  
+**Returns**: true if the value is found otherwise false  
+**Params**
+
+- obj <code>any</code> - the object to search for a value
+- val <code>any</code> - the data to search for within the object
+
 <a name="roundUp"></a>
 
 ## roundUp(n, precision) ⇒
@@ -125,7 +142,7 @@ Rounds a number to its nearest prcision
 **Params**
 
 - n <code>number</code> - the number to round
-- precision <code>number</code> <code> = 0</code> - the number of decimal places to preserve
+- precision <code>number</code> - the number of decimal places to preserve
 
 <a name="sanitize"></a>
 
@@ -141,7 +158,7 @@ the input buffer.
 **Params**
 
 - buffer <code>string</code> - the output bytes to convert and print to log.
-- verbose <code>boolean</code> <code> = false</code> - if true, then the sanitized output is sent to
+- verbose <code>boolean</code> - if true, then the sanitized output is sent to
 the console.
 - log <code>console.log</code> - the output logger to write the output when verbose.
 

@@ -122,6 +122,24 @@ export function isNode() {
 }
 
 /**
+ * Searches an objects value list to see if it exists within the object.
+ * If a key contains that value, then it returns true, otherwise false.
+ * @param obj {any} - the object to search for a value
+ * @param val {any} - the data to search for within the object
+ * @return true if the value is found otherwise false
+ */
+export function objHasValue(obj: any, val: any): any {
+	if (obj) {
+		return (
+			typeof Object.entries(obj).find((it) => it[1] === val) !==
+			"undefined"
+		);
+	}
+
+	return false;
+}
+
+/**
  * Rounds a number to its nearest prcision
  * @param n {number} - the number to round
  * @param precision {number} - the number of decimal places to preserve
