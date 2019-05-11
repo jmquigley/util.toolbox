@@ -29,6 +29,10 @@ for cryptography.</p>
 this can be unreliable if &quot;process&quot; is globally defined in the
 environment by some other application (i.e. monkeypatching)</p>
 </dd>
+<dt><a href="#objFindKeyByValue">objFindKeyByValue(obj, val)</a> ⇒</dt>
+<dd><p>Searchs an objects value list to find its associated key.  It will return
+the key of the first value found.</p>
+</dd>
 <dt><a href="#objHasValue">objHasValue(obj, val)</a> ⇒</dt>
 <dd><p>Searches an objects value list to see if it exists within the object.
 If a key contains that value, then it returns true, otherwise false.</p>
@@ -119,6 +123,19 @@ environment by some other application (i.e. monkeypatching)
 
 **Kind**: global function  
 **Returns**: true if the environment is running under node, otherwise false  
+<a name="objFindKeyByValue"></a>
+
+## objFindKeyByValue(obj, val) ⇒
+Searchs an objects value list to find its associated key.  It will return
+the key of the first value found.
+
+**Kind**: global function  
+**Returns**: the key/value pair, otherwise null  
+**Params**
+
+- obj <code>any</code> - the object to search for a value
+- val <code>any</code> - the data to search for within the object
+
 <a name="objHasValue"></a>
 
 ## objHasValue(obj, val) ⇒

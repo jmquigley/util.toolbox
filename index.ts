@@ -122,6 +122,24 @@ export function isNode() {
 }
 
 /**
+ * Searchs an objects value list to find its associated key.  It will return
+ * the key of the first value found.
+ * @param obj {any} - the object to search for a value
+ * @param val {any} - the data to search for within the object
+ * @return the key/value pair, otherwise null
+ */
+export function objFindKeyByValue(obj: any, val: any): any {
+	if (obj) {
+		const ret = Object.entries(obj).find((it) => it[1] === val);
+		if (ret) {
+			return ret[0];
+		}
+	}
+
+	return null;
+}
+
+/**
  * Searches an objects value list to see if it exists within the object.
  * If a key contains that value, then it returns true, otherwise false.
  * @param obj {any} - the object to search for a value

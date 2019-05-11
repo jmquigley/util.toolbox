@@ -19,6 +19,7 @@ import {
 	isWin,
 	nil,
 	nilEvent,
+	objFindKeyByValue,
 	objHasValue,
 	roundUp,
 	sanitize,
@@ -157,4 +158,21 @@ test("Test searching an object for a value (not key)", () => {
 	expect(objHasValue(null, null)).toBe(false); // undefined, false
 	expect(objHasValue(obj, null)).toBe(true); // key: c, true
 	expect(objHasValue(obj, undefined)).toBe(true); // key: d, true
+});
+
+test("Test searching for a value in an object for its associated first key found", () => {
+	const obj = {
+		a: "x",
+		b: "y",
+		c: null,
+		d: undefined
+	};
+
+	expect(obj).toBeDefined();
+	expect(objFindKeyByValue(obj, "x")).toBe("a");
+	expect(objFindKeyByValue(obj, "y")).toBe("b");
+	expect(objFindKeyByValue(null, null)).toBe(null);
+	expect(objFindKeyByValue(obj, null)).toBe("c");
+	expect(objFindKeyByValue(obj, undefined)).toBe("d");
+	expect(objFindKeyByValue(obj, "z")).toBe(null);
 });
