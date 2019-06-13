@@ -38,7 +38,7 @@ the key of the first value found.</p>
 If a key contains that value, then it returns true, otherwise false.</p>
 </dd>
 <dt><a href="#roundUp">roundUp(n, precision)</a> ⇒</dt>
-<dd><p>Rounds a number to its nearest prcision</p>
+<dd><p>Rounds a number to its nearest precision</p>
 </dd>
 <dt><a href="#sanitize">sanitize(buffer, verbose, log)</a></dt>
 <dd><p>Takes a data buffer of output bytes, converts it to a string and then splits
@@ -152,7 +152,7 @@ If a key contains that value, then it returns true, otherwise false.
 <a name="roundUp"></a>
 
 ## roundUp(n, precision) ⇒
-Rounds a number to its nearest prcision
+Rounds a number to its nearest precision
 
 **Kind**: global function  
 **Returns**: the newly rounded number  

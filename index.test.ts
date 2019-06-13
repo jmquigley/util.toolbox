@@ -2,7 +2,7 @@
 
 console.log = jest.fn();
 
-const debug = require("debug")("util.toolbox.test");
+const debug = require("debug")("util.toolbox:test");
 
 import {regexUUID} from "util.constants";
 import {
@@ -13,10 +13,7 @@ import {
 	getRandomIntInclusive,
 	getUUID,
 	isBrowser,
-	isDarwin,
-	isLinux,
 	isNode,
-	isWin,
 	nil,
 	nilEvent,
 	objFindKeyByValue,
@@ -33,7 +30,7 @@ test("Testing nil", () => {
 
 test("Executing output function test on string", () => {
 	const data: string = "test1\r\ntest2\r\ntest3\n";
-	const out = sanitize(data, true);
+	const out = sanitize(data, true, debug);
 
 	debug(out);
 
@@ -46,7 +43,7 @@ test("Executing output function test on string", () => {
 
 test("Executing output function test on buffer", () => {
 	const data: Buffer = new Buffer.from("test1\r\ntest2\r\ntest3\n");
-	const out = sanitize(data);
+	const out = sanitize(data, true, debug);
 
 	debug(out);
 
@@ -59,7 +56,7 @@ test("Executing output function test on buffer", () => {
 
 test("Executing output function test on string with multiple newlines", () => {
 	const data: string = "test1\r\n\ntest2\n\n\n\r\ntest3\n\n\n";
-	const out = sanitize(data);
+	const out = sanitize(data, true, debug);
 
 	debug(out);
 
@@ -71,7 +68,15 @@ test("Executing output function test on string with multiple newlines", () => {
 });
 
 test("Test sanitize with bad input", () => {
-	const out = sanitize(null);
+	const out = sanitize(null, true, debug);
+
+	expect(out instanceof Array).toBeTruthy();
+	expect(out.length).toBe(0);
+});
+
+test("Test sanitize with an empty buffer", () => {
+	const data: Buffer = new Buffer.from("");
+	const out = sanitize(data, true, debug);
 
 	expect(out instanceof Array).toBeTruthy();
 	expect(out.length).toBe(0);

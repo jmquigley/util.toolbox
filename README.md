@@ -42,11 +42,4 @@ The toolbox contains the following functions:
 It contains the following exposed variables:
 
 - `isBrowser` -- true if the runtime environment is the browser, otherwise false
-- `isDarwin` -- true if the operating system is OSX, otherwise false (same as `isMac`)
-- `isLinux` -- true if the operating system is Linux, otherwise false.
-- `isMac` -- true if the operating system is OSX, otherwise false.
 - `isNode` -- true if the runtime environement is NodeJS, otherwise false
-- `isWin` -- true if the operating system is windows, otherwise false.
-- `encoding` -- default encoding string of 'utf-8'
-- `failure` -- the number 127 for a failed operation
-- `success` -- the number 0 for a successful operation

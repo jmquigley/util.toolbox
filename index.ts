@@ -4,15 +4,6 @@ import {rstrip} from "util.rstrip";
 
 const uuid = require("uuid");
 
-export const encoding: string = "utf-8";
-export const success: number = 0;
-export const failure: number = 127;
-
-export const isDarwin = /^darwin/.test(process.platform);
-export const isLinux = /^linux/.test(process.platform);
-export const isMac = /^darwin/.test(process.platform);
-export const isWin = /^win/.test(process.platform);
-
 /**
  * A function that does nothing.  Use it as an empty callback initializer.
  */
@@ -158,7 +149,7 @@ export function objHasValue(obj: any, val: any): any {
 }
 
 /**
- * Rounds a number to its nearest prcision
+ * Rounds a number to its nearest precision
  * @param n {number} - the number to round
  * @param precision {number} - the number of decimal places to preserve
  * @return the newly rounded number
@@ -185,20 +176,18 @@ export function sanitize(
 	verbose: boolean = false,
 	log = console.log
 ) {
-	if (
-		buffer == null &&
-		typeof buffer !== "string" &&
-		!(buffer instanceof Buffer)
-	) {
+	let lines: string[] = [];
+
+	if (buffer && buffer instanceof Buffer) {
+		buffer = buffer.toString().trim();
+	}
+
+	if (typeof buffer !== "string" || !buffer) {
 		return [];
 	}
 
-	if (buffer instanceof Buffer) {
-		buffer = buffer.toString();
-	}
-
 	buffer = rstrip(buffer);
-	const lines = buffer.split(/\r\n|\r|\n/).map(rstrip);
+	lines = buffer.split(/\r\n|\r|\n/).map(rstrip);
 
 	if (verbose) {
 		lines.forEach((line: string) => {
