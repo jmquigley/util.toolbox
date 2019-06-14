@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const pkg = require("./package.json");
 
+const externals = Object.keys(pkg.dependencies);
 let mode = process.env.NODE_ENV || "development";
 
 module.exports = {
@@ -17,6 +18,7 @@ module.exports = {
 	resolve: {
 		extensions: [".js", ".css"]
 	},
+	externals,
 	resolveLoader: {
 		modules: [path.join(__dirname, "node_modules")]
 	},

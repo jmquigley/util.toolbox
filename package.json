@@ -1,6 +1,6 @@
 {
 	"name": "util.toolbox",
-	"version": "0.0.82",
+	"version": "0.0.83",
 	"debug": false,
 	"author": "jmquigley <jmquigley@outlook.com>",
 	"description": "A set of functions used for build and testing across projects",
@@ -62,7 +62,7 @@
 		]
 	},
 	"scripts": {
-		"all": "yarn install && yarn build && yarn docs && yarn test && yarn manifest",
+		"all": "yarn install && cross-env NODE_ENV=production yarn build && yarn docs && yarn test && yarn manifest",
 		"build": "yarn lint && yarn prettier && yarn build:umd && yarn build:es && yarn build:cjs",
 		"build:cjs": "babel index.ts --sourceType module --out-file index.cjs.min.js",
 		"build:es": "minify index.js --sourceType module --out-file index.es.min.js",
