@@ -1,5 +1,6 @@
 "use strict";
 
+import {encoding as defaultEncoding} from "util.constants";
 import {rstrip} from "util.rstrip";
 
 const uuid = require("uuid");
@@ -164,22 +165,25 @@ export function roundUp(n: number, precision: number = 0) {
  * it on newlines for output.  By default it is just saved into a sanitized
  * array.  If verbose is set to true, then the buffer it output to the console
  * line by line.
- * @param buffer {string} the output bytes to convert and print to log.
- * @param verbose {boolean} if true, then the sanitized output is sent to
+ * @param buffer {string | Buffer} - the output bytes to convert and print to log.
+ * @param verbose=false {boolean} if true, then the sanitized output is sent to
  * the console.
  * @param log {console.log} the output logger to write the output when verbose.
+ * @param encoding="utf8" {string} - the encoding type for a buffer input type
+ * when it is coverted to a string.
  * @retuns {string[]} an array of string that represent the lines given with
  * the input buffer.
  */
 export function sanitize(
 	buffer: string | Buffer,
 	verbose: boolean = false,
-	log = console.log
+	log = console.log,
+	encoding = defaultEncoding
 ) {
 	let lines: string[] = [];
 
 	if (buffer && buffer instanceof Buffer) {
-		buffer = buffer.toString().trim();
+		buffer = buffer.toString(encoding).trim();
 	}
 
 	if (typeof buffer !== "string" || !buffer) {

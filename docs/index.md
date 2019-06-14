@@ -40,7 +40,7 @@ If a key contains that value, then it returns true, otherwise false.</p>
 <dt><a href="#roundUp">roundUp(n, precision)</a> ⇒</dt>
 <dd><p>Rounds a number to its nearest precision</p>
 </dd>
-<dt><a href="#sanitize">sanitize(buffer, verbose, log)</a></dt>
+<dt><a href="#sanitize">sanitize(buffer, verbose, log, encoding)</a></dt>
 <dd><p>Takes a data buffer of output bytes, converts it to a string and then splits
 it on newlines for output.  By default it is just saved into a sanitized
 array.  If verbose is set to true, then the buffer it output to the console
@@ -163,7 +163,7 @@ Rounds a number to its nearest precision
 
 <a name="sanitize"></a>
 
-## sanitize(buffer, verbose, log)
+## sanitize(buffer, verbose, log, encoding)
 Takes a data buffer of output bytes, converts it to a string and then splits
 it on newlines for output.  By default it is just saved into a sanitized
 array.  If verbose is set to true, then the buffer it output to the console
@@ -174,8 +174,10 @@ line by line.
 the input buffer.  
 **Params**
 
-- buffer <code>string</code> - the output bytes to convert and print to log.
-- verbose <code>boolean</code> - if true, then the sanitized output is sent to
+- buffer <code>string</code> | <code>Buffer</code> - the output bytes to convert and print to log.
+- verbose <code>boolean</code> <code> = false</code> - if true, then the sanitized output is sent to
 the console.
 - log <code>console.log</code> - the output logger to write the output when verbose.
+- encoding <code>string</code> <code> = &quot;\&quot;utf8\&quot;&quot;</code> - the encoding type for a buffer input type
+when it is coverted to a string.
 
