@@ -1,7 +1,7 @@
 "use strict";
 
-import {encoding as defaultEncoding} from "util.constants";
-import {rstrip} from "util.rstrip";
+import { encoding as defaultEncoding } from "util.constants";
+import { rstrip } from "util.rstrip";
 
 const uuid = require("uuid");
 
@@ -122,7 +122,7 @@ export function isNode() {
  */
 export function objFindKeyByValue(obj: any, val: any): any {
 	if (obj) {
-		const ret = Object.entries(obj).find((it) => it[1] === val);
+		const ret = Object.entries(obj).find(it => it[1] === val);
 		if (ret) {
 			return ret[0];
 		}
@@ -141,8 +141,7 @@ export function objFindKeyByValue(obj: any, val: any): any {
 export function objHasValue(obj: any, val: any): any {
 	if (obj) {
 		return (
-			typeof Object.entries(obj).find((it) => it[1] === val) !==
-			"undefined"
+			typeof Object.entries(obj).find(it => it[1] === val) !== "undefined"
 		);
 	}
 
