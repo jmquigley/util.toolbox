@@ -4,7 +4,7 @@ console.log = jest.fn();
 
 const debug = require("debug")("util.toolbox:test");
 
-import { regexUUID } from "util.constants";
+import {regexUUID} from "util.constants";
 import {
 	closestNumber,
 	failure,
